@@ -1,0 +1,16 @@
+{
+  "name": "claude-code-agent-smith",
+  "description": "AI Agent Analyzer & Optimizer - Rates, cleans, and fine-tunes AI agents",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.key)",
+      "Read(./**/*_rsa)",
+      "Read(./**/id_rsa)",
+      "Read(./**/*.secret)"
+    ]
+  }
+}

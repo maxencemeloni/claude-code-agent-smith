@@ -1,0 +1,17 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local settings (keep settings.json, ignore local overrides)
+.claude/settings.local.json
+
+# Logs
+*.log
+
+tmp/
