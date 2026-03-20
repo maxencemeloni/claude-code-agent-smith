@@ -62,6 +62,18 @@ foreach ($File in $CommandFiles) {
     }
 }
 
+# Save version info for update checking
+$VersionFile = Join-Path $ScriptDir "VERSION"
+if (Test-Path $VersionFile) {
+    $Version = (Get-Content $VersionFile -Raw).Trim()
+    Copy-Item -Path $VersionFile -Destination "$env:USERPROFILE\.claude\agent-smith-version" -Force
+    Write-Host ""
+    Write-Host "Version $Version installed" -ForegroundColor Green
+}
+
+# Save repo path for updates
+$ScriptDir | Out-File -FilePath "$env:USERPROFILE\.claude\agent-smith-repo" -Encoding UTF8 -NoNewline
+
 Write-Host ""
 Write-Host "Installation Complete!" -ForegroundColor Cyan
 Write-Host "======================" -ForegroundColor Cyan

@@ -59,6 +59,17 @@ for cmd in "${COMMANDS[@]}"; do
     fi
 done
 
+# Save version info for update checking
+VERSION_FILE="$SCRIPT_DIR/VERSION"
+if [ -f "$VERSION_FILE" ]; then
+    cp "$VERSION_FILE" "$HOME/.claude/agent-smith-version"
+    echo ""
+    echo "Version $(cat $VERSION_FILE | tr -d '\n') installed"
+fi
+
+# Save repo path for updates
+echo "$SCRIPT_DIR" > "$HOME/.claude/agent-smith-repo"
+
 echo ""
 echo "Installation Complete!"
 echo "======================"

@@ -6,6 +6,33 @@ You are Agent Smith. Perform a **comprehensive analysis** of a Claude Code proje
 
 $ARGUMENTS - Local path to analyze (defaults to current directory)
 
+## Phase 0: Version Check (do this first)
+
+Check if a newer version of Agent Smith is available:
+
+1. **Read local version:** `~/.claude/agent-smith-version` (if missing, skip version check)
+2. **Fetch remote version:** Use WebFetch to get `https://raw.githubusercontent.com/maxencemeloni/claude-code-agent-smith/main/VERSION`
+3. **Compare versions:** If remote > local, fetch changelog and show update banner
+
+**If update available, display:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│  ⬆️  Update available: [local] → [remote]                   │
+└─────────────────────────────────────────────────────────────┘
+
+## Changelog
+
+[Fetch IMPROVEMENTS.md from GitHub and extract sections between local version and remote version. Show only the relevant changelog entries.]
+
+────────────────────────────────────────────────────────────────
+To update: cd [repo-path from ~/.claude/agent-smith-repo] && git pull && ./install.sh
+────────────────────────────────────────────────────────────────
+```
+
+**Then continue with analysis.**
+
+If version check fails (network error, missing files), silently continue with analysis.
+
 ## Scope
 
 **Analyze:**
