@@ -1,0 +1,16 @@
+{
+  "name": "agent-smith-marketplace",
+  "owner": {
+    "name": "Maxence Meloni",
+    "email": "maxence@mmapi.fr"
+  },
+  "plugins": [
+    {
+      "name": "agent-smith",
+      "description": "Analyze, validate, and optimize Claude Code configurations with a 7-pillar evaluation system",
+      "category": "development",
+      "source": "./",
+      "homepage": "https://github.com/maxencemeloni/claude-code-agent-smith"
+    }
+  ]
+}
