@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v2.0.0-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v2.0.1-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -38,7 +38,10 @@ Agent Smith **analyzes, validates, and fixes** your Claude Code configuration in
 ## Quick Start
 
 ```bash
-# Install (Claude Code plugin)
+# Add the marketplace (one-time)
+claude plugin marketplace add maxencemeloni/claude-code-agent-smith
+
+# Install the plugin
 claude plugin install agent-smith
 
 # Use (in any project)
@@ -197,10 +200,14 @@ Prevent Claude from reading sensitive files:
 ### Plugin (Recommended)
 
 ```bash
+# 1. Add the marketplace (one-time)
+claude plugin marketplace add maxencemeloni/claude-code-agent-smith
+
+# 2. Install the plugin
 claude plugin install agent-smith
 ```
 
-That's it. Works on all platforms.
+Works on all platforms.
 
 ```bash
 # Update

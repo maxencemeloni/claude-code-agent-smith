@@ -2,6 +2,26 @@
 
 ---
 
+## v2.0.1 — Marketplace Discovery
+
+*Released: March 2026*
+
+### Changes
+
+- **Added `marketplace.json`** — The plugin system requires a marketplace manifest for remote installation. Added `.claude-plugin/marketplace.json` so users can add the repo as a marketplace and install via `claude plugin install agent-smith`.
+
+- **Updated install instructions** — README, wiki Installation, and wiki Roadmap now show the correct two-step flow: add marketplace first, then install plugin.
+
+### Files Added
+- `.claude-plugin/marketplace.json` — Marketplace manifest
+
+### Files Updated
+- `README.md` — Two-step install in Quick Start and Install sections, version badge to 2.0.1
+- `VERSION` — Bumped to 2.0.1
+- `IMPROVEMENTS.md` — Added changelog entry
+
+---
+
 ## v2.0.0 — Plugin Distribution
 
 *Released: March 2026*
