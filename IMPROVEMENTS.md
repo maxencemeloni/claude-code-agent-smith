@@ -2,6 +2,45 @@
 
 ---
 
+## v1.5.0 — Unified Interactive Workflow
+
+*Released: March 2026*
+
+### Changes
+
+- **Consolidated 9 commands into 2** — `/analyze-agent` now absorbs validation, context audit, instruction rating, command optimization, and auto-fix into a single interactive workflow. `/create-agent` remains separate for scaffolding.
+
+- **New 5-step interactive flow** — After analysis, users walk through an interactive triage:
+  1. **Analyze** — Full 7-pillar evaluation with validation, token metrics, instruction quality, and extension ratings
+  2. **Save Report** — Automatically saves to `AGENT_SMITH_REPORT.md`
+  3. **Triage** — Pick a category: Quick Wins, Recommended, or Advanced
+  4. **Decide** — For each finding: Yes (apply) / No (skip) / Custom instruction
+  5. **Execute** — Review the execution plan, confirm, and apply all changes
+
+- **Richer report** — Now includes Instruction Quality Detail (per-file clarity/structure/completeness/efficiency/usefulness scores), Extension Quality Detail (per-command/agent/skill ratings), and full Content Overview with token estimates — all in one report.
+
+- **Execution Plan** — Consolidated summary of all user decisions before any changes are made. Users review the full picture, then confirm.
+
+### Commands Removed (absorbed into `/analyze-agent`)
+- `/quick-rate` → Pillar Scores table
+- `/audit-context` → Content Overview section
+- `/validate-agent` → Phase 1: Discovery & Validation
+- `/rate-instructions` → Instruction Clarity pillar detail
+- `/optimize-commands` → Extension Quality Detail section
+- `/fix-agent` → Execution phase
+- `/agent-smith-version` → Phase 0: Version Check
+
+### Files Updated
+- `.claude/commands/analyze-agent.md` — Complete rewrite with 7-phase interactive workflow
+- `install.sh` / `install.ps1` — Reduced to 2 commands, old commands added to cleanup list
+- `AGENT_SMITH.md` — Updated commands table
+- `CLAUDE.md` — Updated commands overview, repository structure
+- `README.md` — Updated commands, sample output, version badge
+- `VERSION` — Bumped to 1.5.0
+- Wiki: `Commands.md`, `Installation.md`, `Best-Practices.md` — Updated for 2-command structure
+
+---
+
 ## v1.4.2 — Fix AGENT_SMITH.md Loading in User Projects
 
 *Released: March 2026*

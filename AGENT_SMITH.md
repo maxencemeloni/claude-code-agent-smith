@@ -390,14 +390,8 @@ Use manifest files to determine project type:
 
 | Command | Purpose |
 |---------|---------|
-| `/analyze-agent` | Full analysis with all pillars |
-| `/quick-rate` | Rapid assessment (surface-level) |
-| `/audit-context` | Context efficiency focused |
-| `/validate-agent` | Syntax and structure validation |
-| `/fix-agent` | Auto-repair common issues |
+| `/analyze-agent` | Full analysis with all pillars, interactive triage, and guided fixes |
 | `/create-agent` | Scaffold new configuration |
-| `/rate-instructions` | Instruction file deep-dive |
-| `/optimize-commands` | Command, agent, and skill quality analysis |
 
 ---
 

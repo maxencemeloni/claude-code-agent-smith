@@ -25,7 +25,14 @@ $OldCommands = @(
     "audit-tokens.md",
     "model-routing.md",
     "optimize-tools.md",
-    "rate-prompts.md"
+    "rate-prompts.md",
+    "quick-rate.md",
+    "audit-context.md",
+    "validate-agent.md",
+    "fix-agent.md",
+    "rate-instructions.md",
+    "optimize-commands.md",
+    "agent-smith-version.md"
 )
 
 foreach ($File in $OldCommands) {
@@ -40,14 +47,7 @@ foreach ($File in $OldCommands) {
 # Copy new command files
 $CommandFiles = @(
     "analyze-agent.md",
-    "quick-rate.md",
-    "audit-context.md",
-    "validate-agent.md",
-    "create-agent.md",
-    "fix-agent.md",
-    "rate-instructions.md",
-    "optimize-commands.md",
-    "agent-smith-version.md"
+    "create-agent.md"
 )
 
 foreach ($File in $CommandFiles) {
@@ -81,15 +81,8 @@ Write-Host "======================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Available commands (use from any Claude Code session):"
 Write-Host ""
-Write-Host "  /analyze-agent       [Agent Smith] Full Configuration Analysis"
-Write-Host "  /quick-rate          [Agent Smith] Quick Configuration Rating"
-Write-Host "  /audit-context       [Agent Smith] Context Efficiency Audit"
-Write-Host "  /validate-agent      [Agent Smith] Configuration Validation"
-Write-Host "  /fix-agent           [Agent Smith] Auto-Fix Configuration"
-Write-Host "  /create-agent        [Agent Smith] Create Configuration"
-Write-Host "  /rate-instructions   [Agent Smith] Instruction Quality Analysis"
-Write-Host "  /optimize-commands   [Agent Smith] Command & Extension Quality Analysis"
-Write-Host "  /agent-smith-version [Agent Smith] Version & Update Check"
+Write-Host "  /analyze-agent  [Agent Smith] Full Configuration Analysis & Interactive Fix"
+Write-Host "  /create-agent   [Agent Smith] Create Configuration"
 Write-Host ""
 Write-Host "Usage:"
 Write-Host "  cd your-project"

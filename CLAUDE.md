@@ -83,15 +83,19 @@ These are NOT measurable by Agent Smith and we must never claim otherwise:
 
 | Command | Purpose |
 |---------|---------|
-| `/analyze-agent` | Full 7-pillar analysis with Action Plan |
-| `/audit-context` | Token measurement and optimization |
-| `/quick-rate` | Rapid assessment |
-| `/validate-agent` | Syntax and structure validation |
-| `/fix-agent` | Auto-repair common issues |
+| `/analyze-agent` | Full 7-pillar analysis, interactive triage, and guided fixes |
 | `/create-agent` | Scaffold new configuration |
-| `/rate-instructions` | Instruction file quality |
-| `/optimize-commands` | Command, agent, and skill quality analysis |
-| `/agent-smith-version` | Version check and update |
+
+### `/analyze-agent` Workflow
+
+1. **Phase 0** — Version check
+2. **Phase 1** — Discovery & validation (absorbs `/validate-agent`)
+3. **Phase 2** — 7-pillar evaluation (absorbs `/audit-context`, `/rate-instructions`, `/optimize-commands`)
+4. **Phase 3** — Scoring
+5. **Phase 4** — Generate & save report to `AGENT_SMITH_REPORT.md`
+6. **Phase 5** — Interactive triage: user picks category (Quick Wins / Recommended / Advanced)
+7. **Phase 6** — Item-by-item decisions: Yes / No / Custom instruction
+8. **Phase 7** — Execution plan: review, confirm, apply (absorbs `/fix-agent`)
 
 ---
 
@@ -142,13 +146,7 @@ claude-code-agent-smith/
 ├── .claude/
 │   └── commands/           # The actual slash commands
 │       ├── analyze-agent.md
-│       ├── audit-context.md
-│       ├── create-agent.md
-│       ├── fix-agent.md
-│       ├── optimize-commands.md
-│       ├── quick-rate.md
-│       ├── rate-instructions.md
-│       └── validate-agent.md
+│       └── create-agent.md
 ├── assets/                 # Banner and logo images
 ├── tmp/                    # Test reports (not committed)
 ├── AGENT_SMITH.md          # Core identity document (loaded by commands)

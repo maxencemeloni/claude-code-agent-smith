@@ -25,6 +25,13 @@ OLD_COMMANDS=(
     "model-routing.md"
     "optimize-tools.md"
     "rate-prompts.md"
+    "quick-rate.md"
+    "audit-context.md"
+    "validate-agent.md"
+    "fix-agent.md"
+    "rate-instructions.md"
+    "optimize-commands.md"
+    "agent-smith-version.md"
 )
 
 for cmd in "${OLD_COMMANDS[@]}"; do
@@ -39,14 +46,7 @@ done
 # Copy new command files
 COMMANDS=(
     "analyze-agent.md"
-    "quick-rate.md"
-    "audit-context.md"
-    "validate-agent.md"
     "create-agent.md"
-    "fix-agent.md"
-    "rate-instructions.md"
-    "optimize-commands.md"
-    "agent-smith-version.md"
 )
 
 for cmd in "${COMMANDS[@]}"; do
@@ -77,15 +77,8 @@ echo "======================"
 echo ""
 echo "Available commands (use from any Claude Code session):"
 echo ""
-echo "  /analyze-agent       [Agent Smith] Full Configuration Analysis"
-echo "  /quick-rate          [Agent Smith] Quick Configuration Rating"
-echo "  /audit-context       [Agent Smith] Context Efficiency Audit"
-echo "  /validate-agent      [Agent Smith] Configuration Validation"
-echo "  /fix-agent           [Agent Smith] Auto-Fix Configuration"
-echo "  /create-agent        [Agent Smith] Create Configuration"
-echo "  /rate-instructions   [Agent Smith] Instruction Quality Analysis"
-echo "  /optimize-commands   [Agent Smith] Command & Extension Quality Analysis"
-echo "  /agent-smith-version [Agent Smith] Version & Update Check"
+echo "  /analyze-agent  [Agent Smith] Full Configuration Analysis & Interactive Fix"
+echo "  /create-agent   [Agent Smith] Create Configuration"
 echo ""
 echo "Usage:"
 echo "  cd your-project"

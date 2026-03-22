@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v1.4.2-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v1.5.0-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -26,12 +26,11 @@
 
 ## What It Does
 
-Agent Smith **analyzes, validates, and fixes** your Claude Code configuration:
+Agent Smith **analyzes, validates, and fixes** your Claude Code configuration in one interactive workflow:
 
-- **Analyze** — Rate your configuration across 7 evaluation areas
-- **Measure** — Get real token estimates for your user-configurable content
-- **Validate** — Check syntax and structure
-- **Fix** — Auto-repair common issues
+- **Analyze** — Full 7-pillar evaluation with token metrics, instruction quality, and extension ratings
+- **Triage** — Interactive walkthrough of findings by effort level
+- **Fix** — Apply accepted changes with an execution plan
 - **Create** — Scaffold new configurations with best practices
 
 ---
@@ -55,15 +54,16 @@ claude
 
 | Command | Purpose |
 |---------|---------|
-| `/analyze-agent` | Full configuration analysis with 7-pillar scoring |
-| `/audit-context` | Token measurement and optimization opportunities |
-| `/quick-rate` | Rapid assessment |
-| `/validate-agent` | Syntax and structure validation |
-| `/fix-agent` | Auto-repair common issues |
-| `/create-agent` | Scaffold new configuration |
-| `/rate-instructions` | Instruction file quality analysis |
-| `/optimize-commands` | Command, agent, and skill quality analysis |
-| `/agent-smith-version` | Version check and update |
+| `/analyze-agent` | Full configuration analysis, interactive triage, and guided fixes |
+| `/create-agent` | Scaffold new configuration with best practices |
+
+### `/analyze-agent` Workflow
+
+1. **Analyze** — Validates structure, scores all 7 pillars, measures tokens, rates instructions and extensions
+2. **Save Report** — Writes full report to `AGENT_SMITH_REPORT.md`
+3. **Triage** — Pick a category: Quick Wins, Recommended, or Advanced
+4. **Decide** — For each finding: Yes (apply) / No (skip) / Custom instruction
+5. **Execute** — Review the execution plan, confirm, and apply all changes
 
 ---
 
@@ -105,33 +105,18 @@ This analysis covers user-configurable components only.
 Claude Code's system prompt and tool schemas are outside this scope.
 ```
 
-### `/audit-context`
+### Interactive Triage
 
-```markdown
-# Context Efficiency Audit
-
-## What This Measures
-
-This audit measures **user-configurable content** only:
-- NOT Claude Code's system prompt (~10-15K tokens)
-- NOT tool schemas (~3-8K tokens)
-
-## Content Inventory
-
-| Category | Files | Est. Tokens |
-|----------|------:|------------:|
-| Instructions | 1 | ~4,800 |
-| Commands | 5 | ~8,600 |
-| **Total** | | **~13,400** |
-
-## Optimization Opportunities
-
-| Issue | Location | Savings |
-|-------|----------|--------:|
-| Duplicated subdomain list | commit.md, create-pr.md | ~400 |
-| Verbose examples | add-flow-node.md | ~3,000 |
-| **Total potential savings** | | **~3,400 (25%)** |
 ```
+Which category do you want to address?
+  A) Quick Wins     — 3 low-effort fixes
+  B) Recommended    — 2 medium-effort improvements
+  C) Advanced       — 1 high-effort optimization
+  D) All categories — Walk through everything
+  E) Done           — Just the report, no changes
+```
+
+After choosing, you walk through each item one by one and decide what to do. Then Agent Smith builds an execution plan and applies your choices.
 
 ---
 
