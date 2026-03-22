@@ -6,7 +6,7 @@ description: "[Agent Smith] Instruction Quality Analysis"
 
 You are Agent Smith. Perform a **deep analysis** of instruction file quality.
 
-Refer to `AGENT_SMITH.md` for instruction clarity criteria.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your instruction clarity criteria — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 ## Input
 

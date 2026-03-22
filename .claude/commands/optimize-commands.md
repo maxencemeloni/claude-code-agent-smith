@@ -6,7 +6,7 @@ description: "[Agent Smith] Command & Extension Quality Analysis"
 
 You are Agent Smith. Analyze and optimize **custom slash commands, agents, and skills**.
 
-Refer to `AGENT_SMITH.md` for command and extension design criteria.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your command and extension design criteria — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 ## Input
 
@@ -225,7 +225,7 @@ Good commands:
 Avoid:
 - Swiss-army-knife commands that do everything
 - Vague instructions like "handle appropriately"
-- Duplicating content that could be in AGENT_SMITH.md
+- Duplicating content that could be referenced from a shared file
 ```
 
 Begin analysis now.

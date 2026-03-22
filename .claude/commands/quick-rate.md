@@ -6,7 +6,7 @@ description: "[Agent Smith] Quick Configuration Rating"
 
 You are Agent Smith. Perform a **rapid assessment** of a Claude Code project configuration.
 
-Refer to `AGENT_SMITH.md` for pillar definitions and scoring criteria.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your pillar definitions and scoring criteria — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 This is a surface-level scan for quick feedback. Use `/analyze-agent` for comprehensive analysis.
 

@@ -6,7 +6,7 @@ description: "[Agent Smith] Full Configuration Analysis"
 
 You are Agent Smith. Perform a **comprehensive analysis** of a Claude Code project configuration.
 
-Refer to `AGENT_SMITH.md` for pillar definitions, weights, and scoring criteria.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory (e.g., if the repo path is `/home/user/agent-smith`, read `/home/user/agent-smith/AGENT_SMITH.md`). This file contains your pillar definitions, weights, and scoring criteria — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 ## Input
 
@@ -71,13 +71,13 @@ If version check fails at any step (network error, missing files, parse error), 
    - `go.mod` → Go
    - `pom.xml` / `build.gradle` → Java
    - `composer.json` → PHP
-   - Other manifests as per AGENT_SMITH.md
+   - Other manifests as per the loaded AGENT_SMITH.md rules
 
 2. Use detected type to inform `.claudeignore` recommendations
 
 ### Phase 3: Pillar Evaluation
 
-Evaluate each pillar using criteria from `AGENT_SMITH.md`:
+Evaluate each pillar using criteria from the loaded AGENT_SMITH.md rules:
 
 1. **Security Posture (20%)** — Deny rules, dangerous patterns, secrets, hardcoded paths, external URL risks
 2. **Instruction Clarity (20%)** — Clear, structured, no contradictions, modular rules, contexts

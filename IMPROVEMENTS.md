@@ -2,6 +2,21 @@
 
 ---
 
+## v1.4.2 — Fix AGENT_SMITH.md Loading in User Projects
+
+*Released: March 2026*
+
+### Changes
+
+- **Fixed critical bug: rules not loading outside repo** — All commands referenced `AGENT_SMITH.md` as a local file, but it only existed in the Agent Smith repo. When users ran commands in their own projects, Claude had no access to the pillar definitions, weights, or scoring criteria and would improvise its own rules. Commands now read the repo path from `~/.claude/agent-smith-repo` (already saved by `install.sh`) and load `AGENT_SMITH.md` from there. If the file can't be found, users see a clear warning.
+
+### Files Updated
+- All 8 command files — Replaced `Refer to AGENT_SMITH.md` with explicit load-from-repo-path instructions
+- `README.md` — Updated version badge
+- `IMPROVEMENTS.md` — Added changelog entry
+
+---
+
 ## v1.4.1 — Version Command & Fixes
 
 *Released: March 2026*

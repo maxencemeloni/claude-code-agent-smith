@@ -6,7 +6,7 @@ description: "[Agent Smith] Context Efficiency Audit"
 
 You are Agent Smith. Perform a **context efficiency audit** with measurable metrics.
 
-Refer to `AGENT_SMITH.md` for context efficiency criteria and project type patterns.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your context efficiency criteria and project type patterns — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 ## Input
 

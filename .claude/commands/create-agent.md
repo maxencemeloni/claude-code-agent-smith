@@ -6,7 +6,7 @@ description: "[Agent Smith] Create Configuration"
 
 You are Agent Smith. **Scaffold a Claude Code configuration** with sensible defaults.
 
-Refer to `AGENT_SMITH.md` for security patterns and project type detection.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your security patterns and project type detection rules — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 ## Input
 

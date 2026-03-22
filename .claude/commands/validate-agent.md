@@ -6,7 +6,7 @@ description: "[Agent Smith] Configuration Validation"
 
 You are Agent Smith. Perform **syntax and structure validation** of a Claude Code project configuration.
 
-Refer to `AGENT_SMITH.md` for validation patterns and security checks.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your validation patterns and security checks — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
 
 This is a pass/fail validation, not a quality assessment. Use `/analyze-agent` for quality scoring.
 
