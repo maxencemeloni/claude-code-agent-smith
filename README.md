@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v2.0.1-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v2.0.2-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -197,8 +197,6 @@ Prevent Claude from reading sensitive files:
 
 ## Install
 
-### Plugin (Recommended)
-
 ```bash
 # 1. Add the marketplace (one-time)
 claude plugin marketplace add maxencemeloni/claude-code-agent-smith
@@ -216,35 +214,6 @@ claude plugin update agent-smith
 # Uninstall
 claude plugin uninstall agent-smith
 ```
-
-### Manual Install (Legacy)
-
-<details>
-<summary>Click to expand</summary>
-
-#### Mac / Linux
-
-```bash
-git clone https://github.com/maxencemeloni/claude-code-agent-smith.git
-cd claude-code-agent-smith && ./install.sh
-```
-
-#### Windows (PowerShell)
-
-```powershell
-git clone https://github.com/maxencemeloni/claude-code-agent-smith.git
-cd claude-code-agent-smith
-.\install.ps1
-```
-
-#### Uninstall (Legacy)
-
-```bash
-./uninstall.sh      # Mac/Linux
-.\uninstall.ps1     # Windows
-```
-
-</details>
 
 ---
 

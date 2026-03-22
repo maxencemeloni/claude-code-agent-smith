@@ -2,6 +2,25 @@
 
 ---
 
+## v2.0.2 — Remove Legacy Install Scripts
+
+*Released: March 2026*
+
+### Changes
+
+- **Removed legacy install references** — All references to `install.sh`, `install.ps1`, `uninstall.sh`, and `uninstall.ps1` removed from README, CLAUDE.md, and wiki. Plugin system is the only install method.
+
+- **Simplified documentation** — README Install section no longer has a legacy collapsible; CLAUDE.md dev tasks updated for plugin workflow.
+
+### Files Updated
+- `README.md` — Removed legacy install section, version badge to 2.0.2
+- `CLAUDE.md` — Updated repo structure, dev tasks, and testing instructions
+- `VERSION` — Bumped to 2.0.2
+- `.claude-plugin/plugin.json` — Bumped to 2.0.2
+- `IMPROVEMENTS.md` — Added changelog entry
+
+---
+
 ## v2.0.1 — Marketplace Discovery
 
 *Released: March 2026*

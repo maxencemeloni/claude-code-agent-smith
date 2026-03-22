@@ -158,11 +158,7 @@ claude-code-agent-smith/
 ├── CLAUDE.md               # This file (development context)
 ├── IMPROVEMENTS.md         # Changelog and roadmap
 ├── README.md               # User-facing documentation
-├── VERSION                 # Current version
-├── install.sh              # Mac/Linux installer (legacy)
-├── install.ps1             # Windows installer (legacy)
-├── uninstall.sh            # Mac/Linux uninstaller (legacy)
-└── uninstall.ps1           # Windows uninstaller (legacy)
+└── VERSION                 # Current version
 ```
 
 ---
@@ -189,11 +185,10 @@ The GitHub wiki is a separate repository located at `/Users/mam/WebstormProjects
 
 ### Adding a New Command
 
-1. Create `.claude/commands/new-command.md`
-2. Add to `install.sh` and `install.ps1` command lists
-3. Update `README.md` commands table
-4. Update wiki `Commands.md`
-5. Bump minor version
+1. Create command in both `.claude/commands/` (dev) and `commands/` (plugin)
+2. Update `README.md` commands table
+3. Update wiki `Commands.md`
+4. Bump minor version
 
 ### Modifying a Pillar
 
@@ -204,7 +199,7 @@ The GitHub wiki is a separate repository located at `/Users/mam/WebstormProjects
 
 ### Renaming/Removing a Command
 
-1. Add old name to `OLD_COMMANDS` array in `install.sh` and `install.ps1`
+1. Remove/rename in both `.claude/commands/` and `commands/`
 2. Update all documentation
 3. Bump minor version (or major if breaking)
 
@@ -214,7 +209,7 @@ The GitHub wiki is a separate repository located at `/Users/mam/WebstormProjects
 
 Before releasing:
 
-1. Run `./install.sh` to install latest commands
+1. Run `claude plugin validate .` to validate the plugin
 2. Test `/analyze-agent` on a sample project
 3. Verify report format matches expected structure
 4. Check that Action Plan checkboxes render correctly
