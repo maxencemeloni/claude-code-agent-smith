@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v1.3.2-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v1.4.0-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -62,7 +62,7 @@ claude
 | `/fix-agent` | Auto-repair common issues |
 | `/create-agent` | Scaffold new configuration |
 | `/rate-instructions` | Instruction file quality analysis |
-| `/optimize-commands` | Custom command quality analysis |
+| `/optimize-commands` | Command, agent, and skill quality analysis |
 
 ---
 
@@ -85,7 +85,7 @@ claude
 | Instruction Clarity | 8/10 | Well-structured CLAUDE.md |
 | Configuration Quality | 8/10 | Good structure |
 | Context Efficiency | 6/10 | Missing .claudeignore patterns |
-| Command Design | 9/10 | Clear, well-documented |
+| Command & Extension Design | 9/10 | Clear, well-documented |
 | Hook Safety | N/A | No hooks configured |
 | MCP Integration | 7/10 | 3 servers configured |
 
@@ -142,7 +142,7 @@ This audit measures **user-configurable content** only:
 | **Instruction Clarity** | 20% | CLAUDE.md quality, structure, contradictions |
 | **Configuration Quality** | 15% | settings.json structure, allow rules |
 | **Context Efficiency** | 15% | .claudeignore coverage, embedded vs referenced content |
-| **Command Design** | 15% | Custom command quality, naming, structure |
+| **Command & Extension Design** | 15% | Commands, agents, skills: quality, naming, structure |
 | **Hook Safety** | 10% | hooks.json validity, dangerous commands |
 | **MCP Integration** | 5% | MCP server configuration quality |
 
@@ -157,6 +157,11 @@ This audit measures **user-configurable content** only:
 | **Missing deny rules** | No protection for .env, secrets/, *.pem |
 | **Dangerous Bash patterns** | `Bash(*)` allows any command |
 | **Unsafe hook commands** | `rm -rf` or `sudo` in hooks |
+| **Hardcoded personal paths** | `/Users/name/` in shared configs |
+| **--no-verify bypasses** | Git safety hooks disabled |
+| **Unscoped agents** | Missing model or tools in agent frontmatter |
+| **Unstructured skills** | Missing SKILL.md or frontmatter |
+| **Too many active MCPs** | >10 servers shrinks context window |
 | **Duplicated content** | Same text in multiple files |
 | **Embedded content** | File contents copied instead of referenced |
 

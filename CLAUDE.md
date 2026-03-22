@@ -42,7 +42,7 @@ Common mistake to avoid: dismissing a feature idea because Agent Smith can't *ex
 | Instruction Clarity | 20% | CLAUDE.md quality, structure, contradictions |
 | Configuration Quality | 15% | settings.json structure, allow rules |
 | Context Efficiency | 15% | .claudeignore coverage, duplication, references |
-| Command Design | 15% | Custom command quality, naming, structure |
+| Command & Extension Design | 15% | Commands, agents, skills: quality, naming, structure |
 | Hook Safety | 10% | hooks.json validity, dangerous commands |
 | MCP Integration | 5% | MCP server configuration quality |
 
@@ -90,7 +90,7 @@ These are NOT measurable by Agent Smith and we must never claim otherwise:
 | `/fix-agent` | Auto-repair common issues |
 | `/create-agent` | Scaffold new configuration |
 | `/rate-instructions` | Instruction file quality |
-| `/optimize-commands` | Command quality analysis |
+| `/optimize-commands` | Command, agent, and skill quality analysis |
 
 ---
 

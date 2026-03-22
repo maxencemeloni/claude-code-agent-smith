@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Instruction Quality Analysis"
+---
+
 # Instruction Quality Analysis
 
 You are Agent Smith. Perform a **deep analysis** of instruction file quality.
@@ -10,7 +14,11 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 
 ## Scope
 
-**Analyze:** `CLAUDE.md`, `INSTRUCTIONS.md`, `AGENT.md`, and any instruction files in `.claude/`.
+**Analyze:**
+- `CLAUDE.md`, `INSTRUCTIONS.md`, `AGENT.md` (root instruction files)
+- `.claude/rules/*.md` (modular rules, if present)
+- `.claude/contexts/*.md` (mode-specific contexts, if present)
+- Any other instruction files in `.claude/`
 
 **Focus:** Clarity, structure, efficiency, and usefulness of instructions.
 
@@ -84,10 +92,13 @@ This command analyzes **user-written instruction files**, not Claude Code's inte
 
 ## Process
 
-1. Read all instruction files
+1. Read all instruction files (CLAUDE.md, rules, contexts)
 2. Evaluate each file against criteria
-3. Identify specific issues with evidence
-4. Suggest improvements
+3. Check for duplication between CLAUDE.md and rules files
+4. Check if CLAUDE.md is over 500 lines (recommend splitting into modular rules)
+5. Check if contexts have clear, non-overlapping modes
+6. Identify specific issues with evidence
+7. Suggest improvements
 
 ## Output Format
 
@@ -137,6 +148,20 @@ After:
 ```
 [improved text]
 ```
+
+---
+
+## Modular Rules (if .claude/rules/ exists)
+
+| Rule File | Topic | Overlap with CLAUDE.md? | Rating |
+|-----------|-------|:-----------------------:|:------:|
+| [name].md | [topic] | ✓/✗ | X/10 |
+
+## Contexts (if .claude/contexts/ exists)
+
+| Context | Mode | Clear Scope? | Rating |
+|---------|------|:------------:|:------:|
+| [name].md | [dev/review/research] | ✓/✗ | X/10 |
 
 ---
 

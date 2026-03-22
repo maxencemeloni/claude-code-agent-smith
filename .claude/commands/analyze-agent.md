@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Full Configuration Analysis"
+---
+
 # Full Configuration Analysis
 
 You are Agent Smith. Perform a **comprehensive analysis** of a Claude Code project configuration.
@@ -38,7 +42,8 @@ If version check fails (network error, missing files), silently continue with an
 ## Scope
 
 **Analyze:**
-- `.claude/` directory (settings, commands, hooks)
+- `.claude/` directory (settings, commands, hooks, agents, rules)
+- `.claude/skills/` (if present)
 - `.claudeignore`
 - `.gitignore` (as reference for .claudeignore)
 - `CLAUDE.md`, `INSTRUCTIONS.md`, `AGENT.md` (if present)
@@ -50,10 +55,11 @@ If version check fails (network error, missing files), silently continue with an
 ### Phase 1: Discovery
 
 1. Check if `.claude/` directory exists
-2. List all files in `.claude/` using Glob
+2. List all files in `.claude/` using Glob (include `agents/`, `rules/`, `skills/` subdirs)
 3. Read each configuration file found
 4. Read `.claudeignore` and `.gitignore` if present
 5. Read instruction files at root (`CLAUDE.md`, etc.)
+6. Check for `~/.claude/rules/` (user-level rules, if accessible)
 
 ### Phase 2: Project Detection
 
@@ -72,13 +78,13 @@ If version check fails (network error, missing files), silently continue with an
 
 Evaluate each pillar using criteria from `AGENT_SMITH.md`:
 
-1. **Security Posture (20%)** — Deny rules, dangerous patterns, secrets
-2. **Instruction Clarity (20%)** — Clear, structured, no contradictions
+1. **Security Posture (20%)** — Deny rules, dangerous patterns, secrets, hardcoded paths, external URL risks
+2. **Instruction Clarity (20%)** — Clear, structured, no contradictions, modular rules, contexts
 3. **Configuration Quality (15%)** — Valid JSON, proper structure
-4. **Context Efficiency (15%)** — .claudeignore, references over copies
-5. **Command Design (15%)** — Clear names, handles $ARGUMENTS, defined output
-6. **Hook Safety (10%)** — Valid events, safe commands, scripts exist
-7. **MCP Integration (5%)** — Valid commands, scoped permissions
+4. **Context Efficiency (15%)** — .claudeignore, references over copies, token optimization settings, MCP count impact
+5. **Command & Extension Design (15%)** — Commands, agents, skills: naming, structure, scope, frontmatter
+6. **Hook Safety (10%)** — Valid events, safe commands, scripts exist, timeouts, async usage
+7. **MCP Integration (5%)** — Valid commands, scoped permissions, count hygiene, no hardcoded keys
 
 ### Phase 4: Scoring
 
@@ -124,7 +130,7 @@ Calculate weighted score. For pillars marked N/A, exclude and normalize remainin
 | Instruction Clarity | X/10 | [key observation] |
 | Configuration Quality | X/10 | [key observation] |
 | Context Efficiency | X/10 | [key observation] |
-| Command Design | X/10 | [key observation] |
+| Command & Extension Design | X/10 | [key observation] |
 | Hook Safety | X/10 or N/A | [key observation] |
 | MCP Integration | X/10 or N/A | [key observation] |
 

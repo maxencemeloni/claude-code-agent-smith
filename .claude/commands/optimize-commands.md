@@ -1,8 +1,12 @@
-# Command Quality Analysis
+---
+description: "[Agent Smith] Command & Extension Quality Analysis"
+---
 
-You are Agent Smith. Analyze and optimize **custom slash commands** in `.claude/commands/`.
+# Command & Extension Quality Analysis
 
-Refer to `AGENT_SMITH.md` for command design criteria.
+You are Agent Smith. Analyze and optimize **custom slash commands, agents, and skills**.
+
+Refer to `AGENT_SMITH.md` for command and extension design criteria.
 
 ## Input
 
@@ -10,11 +14,14 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 
 ## Scope
 
-**Analyze:** All `.md` files in `.claude/commands/`
+**Analyze:**
+- All `.md` files in `.claude/commands/`
+- All `.md` files in `.claude/agents/` (if present)
+- All `SKILL.md` files in `.claude/skills/*/` (if present)
 
 ## Important Note
 
-This analyzes user-created slash commands, not Claude Code's built-in tools. You cannot modify or analyze built-in tool schemas.
+This analyzes user-created extensions, not Claude Code's built-in tools. You cannot modify or analyze built-in tool schemas.
 
 ## Evaluation Criteria
 
@@ -77,13 +84,46 @@ $ARGUMENTS
 - No copied content that should be referenced
 - Appropriate level of detail
 
+## Agent Evaluation Criteria (if agents exist)
+
+### 1. Model Choice (0-10)
+- Appropriate model for the agent's role (haiku for workers, sonnet for main tasks, opus for complex reasoning)
+- Not using opus for simple tasks (cost waste)
+
+### 2. Tool Scoping (0-10)
+- `tools` field present and specific
+- Not granting all tools when only a few are needed
+- Bash tool justified if included
+
+### 3. Role Clarity (0-10)
+- Clear description of what the agent does
+- Single responsibility
+- No overlap with other agents
+
+## Skill Evaluation Criteria (if skills exist)
+
+### 1. Structure (0-10)
+- Frontmatter with `name` and `description`
+- "When to Activate" section present
+- Concrete examples (GOOD/BAD patterns preferred)
+
+### 2. Security (0-10)
+- No external URLs without guardrail comments
+- No hardcoded personal paths
+
+### 3. Scope (0-10)
+- Doesn't duplicate content from CLAUDE.md or rules
+- Focused on a specific domain or workflow
+
 ## Process
 
 1. List all commands in `.claude/commands/`
-2. Read each command file
-3. Evaluate against criteria
-4. Check for redundancy across commands
-5. Suggest improvements
+2. List all agents in `.claude/agents/` (if present)
+3. List all skills in `.claude/skills/` (if present)
+4. Read each file
+5. Evaluate against respective criteria
+6. Check for redundancy across all extensions
+7. Suggest improvements
 
 ## Output Format
 
@@ -126,16 +166,38 @@ $ARGUMENTS
 
 ---
 
-## Cross-Command Analysis
+## Agent Analysis (if present)
+
+| Agent | Model | Tools | Role Clarity | Rating |
+|-------|:-----:|:-----:|:------------:|:------:|
+| [name] | ✓/⚠ | ✓/⚠ | ✓/⚠ | X/10 |
+
+**Issues:**
+- [Specific problems]
+
+---
+
+## Skill Analysis (if present)
+
+| Skill | Structure | Security | Scope | Rating |
+|-------|:---------:|:--------:|:-----:|:------:|
+| [name] | ✓/⚠ | ✓/⚠ | ✓/⚠ | X/10 |
+
+**Issues:**
+- [Specific problems]
+
+---
+
+## Cross-Extension Analysis
 
 **Redundancy found:**
-- [Content duplicated across commands]
+- [Content duplicated across commands, agents, or skills]
 
 **Overlap detected:**
-- [Commands with similar purposes]
+- [Extensions with similar purposes]
 
 **Consistency issues:**
-- [Inconsistent patterns across commands]
+- [Inconsistent patterns across extensions]
 
 ---
 

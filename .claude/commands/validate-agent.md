@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Configuration Validation"
+---
+
 # Configuration Validation
 
 You are Agent Smith. Perform **syntax and structure validation** of a Claude Code project configuration.
@@ -59,7 +63,7 @@ $ARGUMENTS - Local path to validate (defaults to current directory)
 | Commands don't contain dangerous patterns | Warning |
 | Referenced scripts exist | Warning |
 
-**Valid hook events:** `PreToolUse`, `PostToolUse`, `Notification`, `Stop`, `SubagentStop`
+**Valid hook events:** `PreToolUse`, `PostToolUse`, `Notification`, `Stop`, `SubagentStop`, `SessionStart`, `SessionEnd`, `PreCompact`, `UserPromptSubmit`
 
 **Dangerous command patterns:**
 - `rm -rf /` or `rm -rf ~`
@@ -78,12 +82,46 @@ $ARGUMENTS - Local path to validate (defaults to current directory)
 | Has content (not empty) | Warning |
 | Has a heading (`#`) | Warning |
 
-### 7. File Reference Validation
+### 7. Agent Validation
 
-**In instruction files and commands:**
+**For each `.md` file in `.claude/agents/` (if present):**
+
+| Check | Level |
+|-------|-------|
+| File is readable | Error |
+| Has YAML frontmatter | Warning |
+| Frontmatter has `model` field | Warning |
+| `model` is valid (haiku, sonnet, opus) | Warning |
+| Frontmatter has `tools` field | Warning |
+| Has descriptive body content | Warning |
+
+### 8. Skill Validation
+
+**For each subdirectory in `.claude/skills/` (if present):**
+
+| Check | Level |
+|-------|-------|
+| Contains `SKILL.md` file | Error |
+| `SKILL.md` is not empty | Warning |
+| Has frontmatter with `name` and `description` | Warning |
+| No external URLs without security guardrails | Warning |
+
+### 9. Rule Validation
+
+**For each `.md` file in `.claude/rules/` (if present):**
+
+| Check | Level |
+|-------|-------|
+| File is not empty | Warning |
+| No duplication with CLAUDE.md content | Warning |
+
+### 10. File Reference Validation
+
+**In instruction files, commands, and skills:**
 - Check for file path references (e.g., `see src/config.ts`)
 - Verify referenced files exist
-- Level: Warning if missing
+- Check for hardcoded personal paths (`/Users/`, `/home/`)
+- Level: Warning if missing or invalid
 
 ## Output Format
 
@@ -155,6 +193,39 @@ $ARGUMENTS - Local path to validate (defaults to current directory)
 | Command | Status |
 |---------|:------:|
 | [name].md | ✓/⚠ [issue] |
+
+---
+
+## Agents
+
+[If .claude/agents/ exists:]
+| Agent | Frontmatter | Model | Tools | Status |
+|-------|:-----------:|:-----:|:-----:|:------:|
+| [name].md | ✓/⚠ | ✓/⚠ | ✓/⚠ | ✓/⚠ |
+
+[If no agents: "No agents configured"]
+
+---
+
+## Skills
+
+[If .claude/skills/ exists:]
+| Skill | SKILL.md | Frontmatter | Status |
+|-------|:--------:|:-----------:|:------:|
+| [name] | ✓/✗ | ✓/⚠ | ✓/⚠ |
+
+[If no skills: "No skills configured"]
+
+---
+
+## Rules
+
+[If .claude/rules/ exists:]
+| Rule | Status |
+|------|:------:|
+| [name].md | ✓/⚠ [issue] |
+
+[If no rules: "No rules configured"]
 
 ---
 

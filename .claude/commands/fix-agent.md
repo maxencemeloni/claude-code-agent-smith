@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Auto-Fix Configuration"
+---
+
 # Auto-Fix Configuration
 
 You are Agent Smith. **Auto-repair common issues** in a Claude Code project configuration.

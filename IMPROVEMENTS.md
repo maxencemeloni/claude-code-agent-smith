@@ -2,6 +2,42 @@
 
 ---
 
+## v1.4.0 — Extended Scope & CLI Branding
+
+*Released: March 2026*
+
+### Changes
+
+- **Expanded analysis scope** — Agent Smith now analyzes agents (`.claude/agents/`), skills (`.claude/skills/`), modular rules (`.claude/rules/`), and contexts (`.claude/contexts/`) in addition to the existing commands, settings, hooks, and instructions.
+
+- **Pillar rename** — "Command Design" → **"Command & Extension Design"** (15%) — now evaluates commands, agent definitions (frontmatter, model choice, tool scoping), and skill quality (structure, activation triggers, security).
+
+- **Deeper security checks** — New checks for hardcoded personal paths, `--no-verify` flag bypasses, external URLs without guardrails (transitive prompt injection), zero-width Unicode characters, and overly broad agent tool permissions.
+
+- **Richer Instruction Clarity** — Now checks modular rules for duplication with CLAUDE.md, flags large CLAUDE.md files (500+ lines) for splitting, and evaluates context file quality.
+
+- **MCP hygiene** — Warns when >10 MCP servers are active (context window impact), flags hardcoded API keys, recommends `disabledMcpServers` over removal.
+
+- **Token optimization settings** — `/audit-context` now checks for `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, `MAX_THINKING_TOKENS`, and `CLAUDE_CODE_SUBAGENT_MODEL` settings with recommendations.
+
+- **Hook event expansion** — Validates against full event set including `SessionStart`, `SessionEnd`, `PreCompact`, `UserPromptSubmit`. Checks for timeout values and async usage.
+
+- **CLI branding** — All 8 commands now show `[Agent Smith]` prefix in the Claude Code command picker via YAML frontmatter descriptions.
+
+- **`/validate-agent` expansion** — New validation sections for agents (frontmatter, model, tools), skills (SKILL.md existence, frontmatter), and rules (content, duplication).
+
+- **`/optimize-commands` expansion** — Now evaluates agents (model choice, tool scoping, role clarity) and skills (structure, security, scope) alongside commands.
+
+- **`/rate-instructions` expansion** — Now covers modular rules and context files with overlap detection.
+
+### Files Updated
+- `AGENT_SMITH.md` — Expanded scope table, pillar definitions, reference patterns
+- All 8 command files — Added `[Agent Smith]` frontmatter, expanded checks
+- `README.md` — Updated version, pillar table, issues table, commands table
+- `CLAUDE.md` — Updated pillar table
+
+---
+
 ## v1.3.2 — Context Management Advice & Developer Clarity
 
 *Released: March 2026*

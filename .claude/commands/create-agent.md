@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Create Configuration"
+---
+
 # Create Configuration
 
 You are Agent Smith. **Scaffold a Claude Code configuration** with sensible defaults.

@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Context Efficiency Audit"
+---
+
 # Context Efficiency Audit
 
 You are Agent Smith. Perform a **context efficiency audit** with measurable metrics.
@@ -48,7 +52,21 @@ Scan for repeated content across files:
 - Repeated lists (e.g., subdomain lists, enum values)
 - Copy-pasted sections
 
-### Phase 4: Compression Opportunities
+### Phase 4: Token Optimization Settings
+
+Check `settings.json` for environment variable overrides that affect context usage:
+
+| Setting | Current Value | Recommended | Impact |
+|---------|:------------:|:-----------:|--------|
+| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | [value or unset] | 50 | Compacts earlier, healthier sessions |
+| `MAX_THINKING_TOKENS` | [value or unset] | 10000 | Reduces thinking token waste unless deep reasoning needed |
+| `CLAUDE_CODE_SUBAGENT_MODEL` | [value or unset] | haiku | 3x cost savings on sub-agent tasks |
+
+Also check active MCP server count — each adds tool schemas to context:
+- Count active MCP servers in settings
+- If >10: warn about context window impact (~200k can shrink to ~70k)
+
+### Phase 5: Compression Opportunities
 
 Identify verbose content that could be condensed:
 - Long example blocks that could be tables
@@ -56,7 +74,7 @@ Identify verbose content that could be condensed:
 - Embedded content that could reference external files
 - Redundant "do/don't" examples
 
-### Phase 5: Calculate Savings
+### Phase 6: Calculate Savings
 
 For each optimization opportunity:
 - Current tokens

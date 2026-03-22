@@ -1,3 +1,7 @@
+---
+description: "[Agent Smith] Quick Configuration Rating"
+---
+
 # Quick Configuration Rating
 
 You are Agent Smith. Perform a **rapid assessment** of a Claude Code project configuration.
@@ -21,10 +25,13 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 1. Check `.claude/` exists
 2. Read `settings.json` (check for deny rules)
 3. Count commands in `.claude/commands/`
-4. Check `.claudeignore` exists and includes `.git/`
-5. Read first 50 lines of instruction files
-6. Check for `hooks.json`
-7. Check for MCP servers in settings
+4. Count agents in `.claude/agents/` (if present)
+5. Count skills in `.claude/skills/` (if present)
+6. Count rules in `.claude/rules/` (if present)
+7. Check `.claudeignore` exists and includes `.git/`
+8. Read first 50 lines of instruction files
+9. Check for `hooks.json`
+10. Check for MCP servers in settings (count active servers)
 
 ## Output Format
 
@@ -44,7 +51,7 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 | Instructions | X/10 | [one-liner] |
 | Configuration | X/10 | [one-liner] |
 | Context | X/10 | [one-liner] |
-| Commands | X/10 | [one-liner] |
+| Commands & Extensions | X/10 | [one-liner] |
 | Hooks | X/10 or N/A | [one-liner] |
 | MCP | X/10 or N/A | [one-liner] |
 
@@ -60,6 +67,9 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 | `.claudeignore` exists | ✓/✗ |
 | `.git/` ignored | ✓/✗ |
 | Instruction file exists | ✓/✗ |
+| Agents have frontmatter | ✓/✗/N/A |
+| Skills have SKILL.md | ✓/✗/N/A |
+| MCP count ≤10 | ✓/⚠/N/A |
 
 ---
 
