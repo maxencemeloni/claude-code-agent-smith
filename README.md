@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v1.5.0-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v2.0.0-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -38,15 +38,16 @@ Agent Smith **analyzes, validates, and fixes** your Claude Code configuration in
 ## Quick Start
 
 ```bash
-# Install
-git clone https://github.com/maxencemeloni/claude-code-agent-smith.git
-cd claude-code-agent-smith && ./install.sh
+# Install (Claude Code plugin)
+claude plugin install agent-smith
 
 # Use (in any project)
 cd your-project
 claude
 /analyze-agent
 ```
+
+> **Update:** `claude plugin update agent-smith`
 
 ---
 
@@ -193,14 +194,35 @@ Prevent Claude from reading sensitive files:
 
 ## Install
 
-### Mac / Linux
+### Plugin (Recommended)
+
+```bash
+claude plugin install agent-smith
+```
+
+That's it. Works on all platforms.
+
+```bash
+# Update
+claude plugin update agent-smith
+
+# Uninstall
+claude plugin uninstall agent-smith
+```
+
+### Manual Install (Legacy)
+
+<details>
+<summary>Click to expand</summary>
+
+#### Mac / Linux
 
 ```bash
 git clone https://github.com/maxencemeloni/claude-code-agent-smith.git
 cd claude-code-agent-smith && ./install.sh
 ```
 
-### Windows (PowerShell)
+#### Windows (PowerShell)
 
 ```powershell
 git clone https://github.com/maxencemeloni/claude-code-agent-smith.git
@@ -208,20 +230,22 @@ cd claude-code-agent-smith
 .\install.ps1
 ```
 
-### Uninstall
+#### Uninstall (Legacy)
 
 ```bash
 ./uninstall.sh      # Mac/Linux
 .\uninstall.ps1     # Windows
 ```
 
+</details>
+
 ---
 
 ## Contributing
 
 1. Fork the repo
-2. Add/modify commands in `.claude/commands/`
-3. Update install scripts if needed
+2. Add/modify commands in `commands/`
+3. Validate with `claude plugin validate .`
 4. Submit a PR
 
 See [IMPROVEMENTS.md](./IMPROVEMENTS.md) for roadmap and design principles.

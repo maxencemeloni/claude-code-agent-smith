@@ -2,6 +2,36 @@
 
 ---
 
+## v2.0.0 — Plugin Distribution
+
+*Released: March 2026*
+
+### Changes
+
+- **Claude Code plugin format** — Agent Smith is now distributed as a native Claude Code plugin. Install with `claude plugin install agent-smith` instead of running `install.sh`.
+
+- **New plugin structure** — Added `.claude-plugin/plugin.json` manifest and root-level `commands/` directory for plugin discovery.
+
+- **Simplified rule loading** — Commands now use `${CLAUDE_PLUGIN_ROOT}/AGENT_SMITH.md` instead of reading a repo path from `~/.claude/agent-smith-repo`. No more two-step file resolution.
+
+- **Automatic updates** — Version checking (Phase 0) simplified to a version display. Updates are handled by the plugin system (`claude plugin update agent-smith`).
+
+- **Legacy install preserved** — `install.sh` and `install.ps1` still work for users who prefer manual installation, but the plugin method is now primary.
+
+### Files Added
+- `.claude-plugin/plugin.json` — Plugin manifest
+- `commands/analyze-agent.md` — Plugin version of the command (uses `${CLAUDE_PLUGIN_ROOT}`)
+- `commands/create-agent.md` — Plugin version of the command (uses `${CLAUDE_PLUGIN_ROOT}`)
+
+### Files Updated
+- `README.md` — Plugin install as primary method, legacy collapsed
+- `AGENT_SMITH.md` — Added plugin update note
+- `CLAUDE.md` — Updated repository structure
+- `IMPROVEMENTS.md` — Added changelog entry
+- `VERSION` — Bumped to 2.0.0
+
+---
+
 ## v1.5.0 — Unified Interactive Workflow
 
 *Released: March 2026*

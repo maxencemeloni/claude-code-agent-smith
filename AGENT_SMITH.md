@@ -393,6 +393,8 @@ Use manifest files to determine project type:
 | `/analyze-agent` | Full analysis with all pillars, interactive triage, and guided fixes |
 | `/create-agent` | Scaffold new configuration |
 
+*Installed as a Claude Code plugin. Update with `claude plugin update agent-smith`.*
+
 ---
 
 ## Output Principles

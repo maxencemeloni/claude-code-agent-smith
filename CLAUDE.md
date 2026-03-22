@@ -143,20 +143,26 @@ All reports should include:
 
 ```
 claude-code-agent-smith/
+├── .claude-plugin/
+│   └── plugin.json         # Plugin manifest
 ├── .claude/
-│   └── commands/           # The actual slash commands
+│   └── commands/           # Dev-time slash commands (local development)
 │       ├── analyze-agent.md
 │       └── create-agent.md
+├── commands/               # Plugin commands (distributed to users)
+│   ├── analyze-agent.md
+│   └── create-agent.md
 ├── assets/                 # Banner and logo images
 ├── tmp/                    # Test reports (not committed)
 ├── AGENT_SMITH.md          # Core identity document (loaded by commands)
 ├── CLAUDE.md               # This file (development context)
 ├── IMPROVEMENTS.md         # Changelog and roadmap
 ├── README.md               # User-facing documentation
-├── install.sh              # Mac/Linux installer
-├── install.ps1             # Windows installer
-├── uninstall.sh            # Mac/Linux uninstaller
-└── uninstall.ps1           # Windows uninstaller
+├── VERSION                 # Current version
+├── install.sh              # Mac/Linux installer (legacy)
+├── install.ps1             # Windows installer (legacy)
+├── uninstall.sh            # Mac/Linux uninstaller (legacy)
+└── uninstall.ps1           # Windows uninstaller (legacy)
 ```
 
 ---
