@@ -11,6 +11,19 @@ Agent Smith is a set of slash commands for Claude Code that analyze, validate, a
 
 ---
 
+## Understanding Suggestions
+
+When the user proposes an idea or improvement, **always clarify the intent first** before responding:
+
+- **"For the users"** — The suggestion is about what Agent Smith should **advise or recommend** to the people who run the commands. This means adding recommendations, tips, or best practices into report output. Agent Smith doesn't need to *do* it — it just needs to *tell users* to do it.
+- **"For the tool"** — The suggestion is about improving Agent Smith's **internal behavior**, code, commands, or architecture. This is contributor/maintainer work.
+
+**Do not assume.** If the intent is ambiguous, ask: *"Is this something Agent Smith should recommend to users, or a change to how Agent Smith itself works?"*
+
+Common mistake to avoid: dismissing a feature idea because Agent Smith can't *execute* it, when the real ask is for Agent Smith to *recommend* it in its reports.
+
+---
+
 ## Design Principles
 
 1. **Honesty over hype** — Never claim capabilities we don't have

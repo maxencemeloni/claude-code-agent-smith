@@ -210,6 +210,16 @@ Your user content is ~X% of the estimated base context load.
 ### Consider
 1. [Lower priority optimizations]
 
+### Session Management
+
+💡 **Use `/compact` early and often** — The `/compact` command summarizes your conversation to free up context. The earlier you run it, the better the summary quality and context coherence. This is especially important with a config footprint of ~X tokens already loaded at session start.
+
+[If total user content > 5,000 tokens, add:]
+⚠️ **Your configuration is heavy (~X tokens).** This reduces your effective working context significantly. Beyond the optimizations above, make `/compact` a habit in long sessions to compensate.
+
+[If total user content ≤ 2,000 tokens, add:]
+✅ **Lightweight configuration.** Your config footprint is small, leaving plenty of room for working context. Running `/compact` is still good practice for long sessions.
+
 ---
 
 ## Limitations

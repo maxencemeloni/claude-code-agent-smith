@@ -2,6 +2,21 @@
 
 ---
 
+## v1.3.2 — Context Management Advice & Developer Clarity
+
+*Released: March 2026*
+
+### Changes
+
+- **`/compact` session management tip** — `/audit-context` now includes a "Session Management" section in recommendations, advising users to run `/compact` early for better context coherence. Advice scales with config footprint size (warning if >5K tokens, green light if ≤2K tokens).
+- **Suggestion intent clarity** — Added "Understanding Suggestions" section in `CLAUDE.md` to ensure contributors distinguish between "for the users" (recommendations in reports) vs "for the tool" (internal changes).
+
+### Files Updated
+- `.claude/commands/audit-context.md` — Added Session Management subsection in Recommendations
+- `CLAUDE.md` — Added Understanding Suggestions section
+
+---
+
 ## v1.3.1 — Interactive Report Save Prompt
 
 *Released: March 2026*
