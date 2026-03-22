@@ -91,6 +91,7 @@ These are NOT measurable by Agent Smith and we must never claim otherwise:
 | `/create-agent` | Scaffold new configuration |
 | `/rate-instructions` | Instruction file quality |
 | `/optimize-commands` | Command, agent, and skill quality analysis |
+| `/agent-smith-version` | Version check and update |
 
 ---
 

@@ -16,9 +16,10 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 
 Check if a newer version of Agent Smith is available:
 
-1. **Read local version:** `~/.claude/agent-smith-version` (if missing, skip version check)
-2. **Fetch remote version:** Use WebFetch to get `https://raw.githubusercontent.com/maxencemeloni/claude-code-agent-smith/main/VERSION`
-3. **Compare versions:** If remote > local, fetch changelog and show update banner
+1. **Read local version:** Use the `Read` tool to read `~/.claude/agent-smith-version`. If the file doesn't exist, skip the entire version check and proceed to Phase 1.
+2. **Read repo path:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path).
+3. **Fetch remote version:** Use the `WebFetch` tool to fetch `https://raw.githubusercontent.com/maxencemeloni/claude-code-agent-smith/main/VERSION`. Extract just the version string (trim whitespace).
+4. **Compare versions:** Parse both as semver. If remote > local, fetch changelog and show update banner. If equal or local is newer, skip silently.
 
 **If update available, display:**
 ```
@@ -28,16 +29,16 @@ Check if a newer version of Agent Smith is available:
 
 ## Changelog
 
-[Fetch IMPROVEMENTS.md from GitHub and extract sections between local version and remote version. Show only the relevant changelog entries.]
+[Use WebFetch to get https://raw.githubusercontent.com/maxencemeloni/claude-code-agent-smith/main/IMPROVEMENTS.md — extract sections between local version and remote version. Show only the relevant changelog entries.]
 
 ────────────────────────────────────────────────────────────────
-To update: cd [repo-path from ~/.claude/agent-smith-repo] && git pull && ./install.sh
+To update: cd [repo-path] && git pull && ./install.sh
 ────────────────────────────────────────────────────────────────
 ```
 
 **Then continue with analysis.**
 
-If version check fails (network error, missing files), silently continue with analysis.
+If version check fails at any step (network error, missing files, parse error), silently continue with Phase 1.
 
 ## Scope
 
@@ -242,12 +243,29 @@ This analysis covers user-configurable components only. Claude Code's system pro
 
 ## After Analysis
 
-Use the `AskUserQuestion` tool to prompt the user:
-- **Question:** "Save this report as AGENT_SMITH_REPORT.md?"
-- **Header:** "Save report"
-- **Options:**
-  - `Yes` — "Save the full report to AGENT_SMITH_REPORT.md in the project root"
-  - `No` — "Skip saving, just display the report"
+After displaying the full report, use the `AskUserQuestion` tool with these exact parameters:
+
+```json
+{
+  "questions": [
+    {
+      "question": "Save this report as AGENT_SMITH_REPORT.md in the project root?",
+      "header": "Save report",
+      "options": [
+        {
+          "label": "Yes",
+          "description": "Save the full report to AGENT_SMITH_REPORT.md in the project root"
+        },
+        {
+          "label": "No",
+          "description": "Skip saving, just display the report"
+        }
+      ],
+      "multiSelect": false
+    }
+  ]
+}
+```
 
 If the user selects **Yes**, write the report to `AGENT_SMITH_REPORT.md` at the project root.
 

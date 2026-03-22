@@ -2,6 +2,28 @@
 
 ---
 
+## v1.4.1 — Version Command & Fixes
+
+*Released: March 2026*
+
+### Changes
+
+- **New `/agent-smith-version` command** — Dedicated command to check installed version, fetch latest from GitHub, show changelog diff, and offer interactive update via `AskUserQuestion`.
+- **Fixed `/analyze-agent` version check** — Made tool usage explicit (`Read` for local files, `WebFetch` for remote), added repo path step, clarified semver comparison logic.
+- **Fixed `/analyze-agent` save prompt** — `AskUserQuestion` now uses exact JSON parameters instead of vague description, ensuring the interactive Yes/No prompt renders correctly.
+- **Fixed uninstall scripts** — `uninstall.sh` and `uninstall.ps1` were outdated (still referenced pre-v1.0.0 commands only). Now include all 9 current commands, old commands for cleanup, and remove version/repo tracking files.
+- **Install script branding** — Post-install command list now shows `[Agent Smith]` prefix matching YAML frontmatter descriptions.
+
+### Files Updated
+- `.claude/commands/agent-smith-version.md` — New command
+- `.claude/commands/analyze-agent.md` — Fixed version check and save prompt
+- `install.sh` / `install.ps1` — Added new command, branded output
+- `uninstall.sh` / `uninstall.ps1` — Full rewrite with all current commands
+- `README.md` — Updated version badge, added command to table
+- `CLAUDE.md` — Added command to overview table
+
+---
+
 ## v1.4.0 — Extended Scope & CLI Branding
 
 *Released: March 2026*

@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v1.4.0-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v1.4.1-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -63,6 +63,7 @@ claude
 | `/create-agent` | Scaffold new configuration |
 | `/rate-instructions` | Instruction file quality analysis |
 | `/optimize-commands` | Command, agent, and skill quality analysis |
+| `/agent-smith-version` | Version check and update |
 
 ---
 

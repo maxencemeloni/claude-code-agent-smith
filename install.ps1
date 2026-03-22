@@ -46,7 +46,8 @@ $CommandFiles = @(
     "create-agent.md",
     "fix-agent.md",
     "rate-instructions.md",
-    "optimize-commands.md"
+    "optimize-commands.md",
+    "agent-smith-version.md"
 )
 
 foreach ($File in $CommandFiles) {
@@ -80,14 +81,15 @@ Write-Host "======================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Available commands (use from any Claude Code session):"
 Write-Host ""
-Write-Host "  /analyze-agent       Full configuration analysis"
-Write-Host "  /quick-rate          Rapid assessment"
-Write-Host "  /audit-context       Context efficiency check"
-Write-Host "  /validate-agent      Syntax and structure validation"
-Write-Host "  /fix-agent           Auto-repair common issues"
-Write-Host "  /create-agent        Scaffold new configuration"
-Write-Host "  /rate-instructions   Instruction file quality"
-Write-Host "  /optimize-commands   Command quality analysis"
+Write-Host "  /analyze-agent       [Agent Smith] Full Configuration Analysis"
+Write-Host "  /quick-rate          [Agent Smith] Quick Configuration Rating"
+Write-Host "  /audit-context       [Agent Smith] Context Efficiency Audit"
+Write-Host "  /validate-agent      [Agent Smith] Configuration Validation"
+Write-Host "  /fix-agent           [Agent Smith] Auto-Fix Configuration"
+Write-Host "  /create-agent        [Agent Smith] Create Configuration"
+Write-Host "  /rate-instructions   [Agent Smith] Instruction Quality Analysis"
+Write-Host "  /optimize-commands   [Agent Smith] Command & Extension Quality Analysis"
+Write-Host "  /agent-smith-version [Agent Smith] Version & Update Check"
 Write-Host ""
 Write-Host "Usage:"
 Write-Host "  cd your-project"
