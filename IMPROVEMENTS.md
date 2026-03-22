@@ -2,6 +2,27 @@
 
 ---
 
+## v2.0.3 — Remove Legacy Install Scripts
+
+*Released: March 2026*
+
+### Changes
+
+- **Deleted legacy install/uninstall scripts** — Removed `install.sh`, `install.ps1`, `uninstall.sh`, and `uninstall.ps1` from the repository. These were obsolete since v2.0.0 (plugin distribution).
+
+- **Cleaned up dev commands** — Updated `.claude/commands/analyze-agent.md` and `.claude/commands/create-agent.md` to reference plugin install method instead of `install.sh`. Simplified Phase 0 version check to match plugin version.
+
+### Files Updated
+- `install.sh`, `install.ps1`, `uninstall.sh`, `uninstall.ps1` — Deleted
+- `.claude/commands/analyze-agent.md` — Removed install.sh references, simplified Phase 0
+- `.claude/commands/create-agent.md` — Removed install.sh reference
+- `VERSION` — Bumped to 2.0.3
+- `.claude-plugin/plugin.json` — Bumped to 2.0.3
+- `README.md` — Version badge to 2.0.3
+- `IMPROVEMENTS.md` — Added changelog entry
+
+---
+
 ## v2.0.2 — Remove Legacy Install Scripts
 
 *Released: March 2026*

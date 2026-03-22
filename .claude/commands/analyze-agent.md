@@ -6,7 +6,7 @@ description: "[Agent Smith] Full Configuration Analysis"
 
 You are Agent Smith. Perform a **comprehensive analysis** of a Claude Code project configuration, then guide the user through an **interactive fix workflow**.
 
-**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory (e.g., if the repo path is `/home/user/agent-smith`, read `/home/user/agent-smith/AGENT_SMITH.md`). This file contains your pillar definitions, weights, and scoring criteria — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall with install.sh." and continue with best judgment.
+**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory (e.g., if the repo path is `/home/user/agent-smith`, read `/home/user/agent-smith/AGENT_SMITH.md`). This file contains your pillar definitions, weights, and scoring criteria — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall the plugin with `claude plugin install agent-smith`." and continue with best judgment.
 
 ## Input
 
@@ -24,31 +24,15 @@ This command runs a **5-step workflow**:
 
 ---
 
-## Phase 0: Version Check (do this first)
+## Phase 0: Version Display
 
-Check if a newer version of Agent Smith is available:
+Read the version from the `VERSION` file in the Agent Smith repo directory and display it briefly:
 
-1. **Read local version:** Use the `Read` tool to read `~/.claude/agent-smith-version`. If the file doesn't exist, skip the entire version check and proceed to Phase 1.
-2. **Read repo path:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path).
-3. **Fetch remote version:** Use the `WebFetch` tool to fetch `https://raw.githubusercontent.com/maxencemeloni/claude-code-agent-smith/main/VERSION`. Extract just the version string (trim whitespace).
-4. **Compare versions:** Parse both as semver. If remote > local, fetch changelog and show update banner. If equal or local is newer, skip silently.
-
-**If update available, display:**
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  ⬆️  Update available: [local] → [remote]                   │
-└─────────────────────────────────────────────────────────────┘
-
-## Changelog
-
-[Use WebFetch to get https://raw.githubusercontent.com/maxencemeloni/claude-code-agent-smith/main/IMPROVEMENTS.md — extract sections between local version and remote version. Show only the relevant changelog entries.]
-
-────────────────────────────────────────────────────────────────
-To update: cd [repo-path] && git pull && ./install.sh
-────────────────────────────────────────────────────────────────
+Agent Smith v[version]
 ```
 
-**Then continue with analysis.**
+Updates are handled via the Claude Code plugin system (`claude plugin update agent-smith`).
 
 If version check fails at any step (network error, missing files, parse error), silently continue with Phase 1.
 
