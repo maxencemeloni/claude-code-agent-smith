@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v2.1.2-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v2.2.0-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -121,6 +121,8 @@ Which category do you want to address?
 ```
 
 After choosing, you walk through each item one by one and decide what to do. Then Agent Smith builds an execution plan and applies your choices.
+
+> See [`examples/reports/`](./examples/reports/) for a full real-world report from Agent Smith's self-analysis, and [`examples/configs/`](./examples/configs/) for starter configurations for Node.js, Python, and generic projects.
 
 ---
 

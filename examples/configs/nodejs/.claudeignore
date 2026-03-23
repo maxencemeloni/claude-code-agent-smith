@@ -1,0 +1,41 @@
+# Git
+.git/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Binaries
+*.zip
+*.tar.gz
+*.mp4
+*.png
+*.jpg
+*.pdf
+
+# Lock files (large, not useful for analysis)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

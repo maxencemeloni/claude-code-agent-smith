@@ -2,6 +2,26 @@
 
 ---
 
+## v2.2.0 — Examples Directory
+
+*Released: March 2026*
+
+### Changes
+
+- **Examples directory** — Added `examples/` with sample reports and starter configurations for new users:
+  - `examples/reports/self-analysis-v2.1.2.md` — Real self-analysis report from dogfooding
+  - `examples/configs/nodejs/` — Node.js starter (settings.json, .claudeignore, CLAUDE.md)
+  - `examples/configs/python/` — Python starter with pytest/ruff/mypy allows
+  - `examples/configs/generic/` — Minimal starter for any project type
+
+- **All configs include complete deny rules** — Every example ships with the full deny pattern set from AGENT_SMITH.md, including `.p12`, `.pfx`, `credentials*`, `*token*`, `*password*`.
+
+- **README updated** — Links to examples after the Sample Output section.
+
+- **CLAUDE.md updated** — Repo structure now includes `examples/` directory.
+
+---
+
 ## v2.1.2 — Self-Analysis & Config Cleanup
 
 *Released: March 2026*

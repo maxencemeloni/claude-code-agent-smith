@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.key)",
+      "Read(./**/*_rsa)",
+      "Read(./**/id_rsa)",
+      "Read(./**/*.secret)",
+      "Read(./**/*.p12)",
+      "Read(./**/*.pfx)",
+      "Read(./**/credentials*)",
+      "Read(./**/*token*)",
+      "Read(./**/*password*)"
+    ],
+    "allow": [
+      "Bash(pytest:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

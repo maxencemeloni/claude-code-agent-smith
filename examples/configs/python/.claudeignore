@@ -1,0 +1,47 @@
+# Git
+.git/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.eggs/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Build
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Binaries
+*.zip
+*.tar.gz
+*.mp4
+*.png
+*.jpg
+*.pdf
+
+# Data (often large)
+*.csv
+*.parquet
+*.sqlite

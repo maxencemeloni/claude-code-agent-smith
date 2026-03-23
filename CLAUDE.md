@@ -166,6 +166,9 @@ claude-code-agent-smith/
 ├── commands/               # Plugin commands (distributed to users)
 │   ├── analyze-agent.md
 │   └── create-agent.md
+├── examples/
+│   ├── reports/            # Sample analysis reports (self-analysis)
+│   └── configs/            # Starter configs (nodejs, python, generic)
 ├── assets/                 # Banner and logo images
 ├── tmp/                    # Test reports (not committed)
 ├── AGENT_SMITH.md          # Core identity document (loaded by commands)
