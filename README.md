@@ -50,7 +50,7 @@ claude
 /analyze-agent
 ```
 
-> **Update:** `claude plugin update agent-smith@agent-smith-marketplace`
+> **Update:** `claude plugin marketplace update agent-smith-marketplace && claude plugin update agent-smith@agent-smith-marketplace`
 
 ---
 
@@ -208,7 +208,8 @@ claude plugin install agent-smith
 Works on all platforms.
 
 ```bash
-# Update
+# Update (refresh marketplace first, then update)
+claude plugin marketplace update agent-smith-marketplace
 claude plugin update agent-smith@agent-smith-marketplace
 
 # Uninstall

@@ -142,8 +142,9 @@ All reports should include:
 
 ### Post-Release Verification
 
-After pushing, always verify the plugin update works:
+After pushing, always verify the plugin update works (marketplace refresh is required before update):
 ```bash
+claude plugin marketplace update agent-smith-marketplace
 claude plugin update agent-smith@agent-smith-marketplace
 ```
 The version should match the just-released version. If not, check that both `plugin.json` and `marketplace.json` have the correct version.

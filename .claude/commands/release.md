@@ -113,7 +113,12 @@ The release notes should include:
 
 1. Confirm the release URL is accessible
 2. Show the user the release URL
-3. Run `claude plugin update agent-smith@agent-smith-marketplace` and verify the version matches the new release
+3. Refresh the marketplace cache, then update the plugin:
+   ```bash
+   claude plugin marketplace update agent-smith-marketplace
+   claude plugin update agent-smith@agent-smith-marketplace
+   ```
+4. Verify the plugin version matches the new release
 
 ## Rules
 
