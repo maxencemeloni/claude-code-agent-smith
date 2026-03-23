@@ -225,7 +225,7 @@ claude plugin uninstall agent-smith@agent-smith-marketplace
 3. Validate with `claude plugin validate .`
 4. Submit a PR
 
-See [IMPROVEMENTS.md](./IMPROVEMENTS.md) for roadmap and design principles.
+See [IMPROVEMENTS.md](./IMPROVEMENTS.md) for the full changelog and the [wiki Roadmap](https://github.com/maxencemeloni/claude-code-agent-smith/wiki/Roadmap) for planned features.
 
 ---
 
