@@ -2,6 +2,24 @@
 
 ---
 
+## v2.1.1 — Documentation Cleanup & Plugin Update Fix
+
+*Released: March 2026*
+
+### Changes
+
+- **Fixed plugin update instructions** — Update commands now use the full qualified name (`agent-smith@agent-smith-marketplace`) and include the required `claude plugin marketplace update` step before `claude plugin update`. Without the marketplace refresh, updates were not detected.
+
+- **Added version to marketplace.json** — Plugin entry now includes a `version` field alongside `plugin.json` for consistent version resolution.
+
+- **Cleaned IMPROVEMENTS.md** — Removed stale sections (outdated 8-command list, old roadmap, duplicated design principles). File is now changelog-only; the [wiki Roadmap](https://github.com/maxencemeloni/claude-code-agent-smith/wiki/Roadmap) is the single source of truth for planned features.
+
+- **Updated release command** — `/release` now includes `marketplace.json` in the version bump checklist and a post-release verification step with marketplace refresh.
+
+- **Updated CLAUDE.md** — Added `marketplace.json` to files-to-update table, repo structure, and post-release verification instructions.
+
+---
+
 ## v2.1.0 — Parallel Execution Phases
 
 *Released: March 2026*
