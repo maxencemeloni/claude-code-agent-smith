@@ -2,6 +2,30 @@
 
 ---
 
+## v2.1.0 — Parallel Execution Phases
+
+*Released: March 2026*
+
+### Changes
+
+- **Parallel execution phases in Phase 7** — After users confirm their fix selections, the execution engine now analyzes file dependencies, groups independent fixes into parallel phases, and executes them concurrently using the Agent tool. Fixes targeting different files run simultaneously; fixes targeting the same file run sequentially in order. This significantly reduces wall-clock time when applying multiple fixes.
+
+- **Phased execution plan display** — Before executing, users now see a phased breakdown showing which fixes run in parallel vs. sequentially, with dependency information.
+
+- **Failure propagation** — If a fix fails, dependent fixes (same file, later phase) are automatically skipped with a clear explanation.
+
+- **New safety rules** — Added "Phase isolation" (no phase starts until the previous completes) and "Fail-safe propagation" rules to the execution phase.
+
+### Files Updated
+- `commands/analyze-agent.md` — Rewrote Phase 7 with parallel execution phases
+- `.claude/commands/analyze-agent.md` — Same changes (dev mirror)
+- `VERSION` — Bumped to 2.1.0
+- `.claude-plugin/plugin.json` — Bumped to 2.1.0
+- `README.md` — Version badge to 2.1.0
+- `IMPROVEMENTS.md` — Added changelog entry
+
+---
+
 ## v2.0.3 — Remove Legacy Install Scripts
 
 *Released: March 2026*

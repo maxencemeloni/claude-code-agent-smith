@@ -14,13 +14,14 @@ $ARGUMENTS - Local path to analyze (defaults to current directory)
 
 ## Overview
 
-This command runs a **5-step workflow**:
+This command runs a **6-step workflow**:
 
 1. **Analyze** — Full 7-pillar evaluation (includes validation, context audit, instruction quality, command quality)
 2. **Save Report** — Write report to `AGENT_SMITH_REPORT.md`
 3. **Interactive Triage** — User picks which category to address
 4. **Item-by-Item Decisions** — User decides on each finding: Yes / No / Custom
-5. **Execution Plan & Apply** — Show consolidated plan, confirm, execute
+5. **Execution Plan** — Show consolidated plan with parallel phases, confirm
+6. **Phased Execution** — Execute fixes in parallel phases, report results
 
 ---
 
@@ -423,18 +424,53 @@ Then ask for confirmation:
 }
 ```
 
-### 7b. Execute
+### 7b. Build Execution Phases
 
-On **Yes**: Apply each accepted change one by one. For each change:
-1. Show what you're about to modify
-2. Make the edit
-3. Confirm success or report failure
+Before executing, analyze the accepted fixes and organize them into **parallel execution phases** for optimal speed:
+
+1. **Map dependencies** — For each accepted fix, identify which file(s) it modifies
+2. **Group by independence** — Fixes that touch **different files** are independent and can run in parallel. Fixes that touch the **same file** must run sequentially (earlier fix first)
+3. **Build phases** — Organize into ordered phases where all fixes within a phase are independent
+
+**Dependency rule:** Two fixes are dependent if they modify the same file. Within a dependency chain, preserve the original action plan order (A before B before C).
+
+Display the phased plan before executing:
+
+```markdown
+## Execution Phases
+
+### Phase 1 (parallel — X changes)
+| # | Action | Target File |
+|---|--------|-------------|
+| A2 | Add .git/ to .claudeignore | .claudeignore |
+| B1 | Restructure CLAUDE.md sections | CLAUDE.md |
+
+### Phase 2 (parallel — X changes)
+| # | Action | Target File |
+|---|--------|-------------|
+| A1 | Add .env deny rules | settings.json |
+
+### Phase 3 (sequential — depends on Phase 2)
+| # | Action | Depends On |
+|---|--------|------------|
+| A3 | Fix JSON trailing comma | A1 (same file) |
+```
+
+### 7c. Execute
+
+On **Yes**:
+
+1. Execute one phase at a time, starting from Phase 1
+2. **Within each phase**, launch all fixes in parallel using the Agent tool (one agent per fix)
+3. Wait for the entire phase to complete before starting the next phase
+4. **Failure propagation** — If a fix fails, skip any dependent fixes in later phases and report why
+5. For each fix (whether parallel or sequential), show what changed and confirm success or failure
 
 On **No**: Stop. Tell the user no changes were made.
 
 On **Revise**: Go back to Phase 6 and re-present the items.
 
-### 7c. Results
+### 7d. Results
 
 After executing, display a summary:
 
@@ -444,17 +480,20 @@ After executing, display a summary:
 **Applied:** X changes
 **Skipped:** Y items
 **Failed:** Z items (if any)
+**Phases executed:** N
 
 ### Changes Made
-✓ [A1] Added .env deny rules to settings.json
-✓ [A3] Fixed trailing comma and reformatted settings.json
-✓ [B1] Restructured CLAUDE.md into 4 sections
+✓ [A2] Added .git/ to .claudeignore (Phase 1)
+✓ [B1] Restructured CLAUDE.md into 4 sections (Phase 1)
+✓ [A1] Added .env deny rules to settings.json (Phase 2)
+✓ [A3] Fixed trailing comma and reformatted settings.json (Phase 3)
 
 ### Skipped
-— [A2] Add .git/ to .claudeignore (user chose to skip)
+— [item] (user chose to skip)
 
 ### Failed (if any)
 ✗ [description and reason]
+✗ [dependent item] — skipped because [parent fix] failed
 ```
 
 ---
@@ -466,6 +505,8 @@ After executing, display a summary:
 3. **Conservative fixes** — When uncertain about a custom instruction, ask for clarification
 4. **Atomic changes** — Each fix is independent; a failure in one doesn't block others
 5. **No destructive actions** — Never delete user content; only add, modify, or reorganize
+6. **Phase isolation** — Never start a phase until the previous phase has fully completed
+7. **Fail-safe propagation** — If a fix fails, all fixes that depend on it (same file, later phase) are automatically skipped
 
 ---
 

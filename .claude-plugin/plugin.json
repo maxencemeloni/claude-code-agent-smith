@@ -1,6 +1,6 @@
 {
   "name": "agent-smith",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Analyze, validate, and optimize Claude Code configurations with a 7-pillar evaluation system",
   "author": {
     "name": "Maxence Meloni",
