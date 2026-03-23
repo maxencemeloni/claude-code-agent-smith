@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v2.2.0-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v2.3.0-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -29,6 +29,7 @@
 Agent Smith **analyzes, validates, and fixes** your Claude Code configuration in one interactive workflow:
 
 - **Analyze** — Full 7-pillar evaluation with token metrics, instruction quality, and extension ratings
+- **Track** — Score history with trend indicators and regression detection
 - **Triage** — Interactive walkthrough of findings by effort level
 - **Fix** — Apply accepted changes with an execution plan
 - **Create** — Scaffold new configurations with best practices
@@ -217,6 +218,12 @@ claude plugin update agent-smith@agent-smith-marketplace
 # Uninstall
 claude plugin uninstall agent-smith@agent-smith-marketplace
 ```
+
+> **Upgrading from v1.x?** The install script (`install.sh`/`install.ps1`) method was removed in v2.0. To migrate:
+> 1. Run the old uninstall script: `bash uninstall.sh` (or `.\uninstall.ps1` on Windows)
+> 2. Install fresh using the plugin commands above
+>
+> If you no longer have the uninstall script, manually delete the Agent Smith commands from `~/.claude/commands/` and the `~/.claude/agent-smith-repo` file, then install the plugin.
 
 ---
 

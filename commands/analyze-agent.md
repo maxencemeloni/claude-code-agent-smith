@@ -47,6 +47,7 @@ Updates are handled automatically by the Claude Code plugin system (`claude plug
 4. Read `.claudeignore` and `.gitignore` if present
 5. Read instruction files at root (`CLAUDE.md`, etc.)
 6. Check for `~/.claude/rules/` (user-level rules, if accessible)
+7. Read `.claude/agent-smith-history.json` if it exists (for progress tracking)
 
 ### 1b. Validation (absorbed from /validate-agent)
 
@@ -133,9 +134,41 @@ Calculate weighted score. For pillars marked N/A, exclude and normalize remainin
 
 Build the report in the following format, then **save it to `AGENT_SMITH_REPORT.md` in the project root**.
 
-After saving, tell the user: `"📄 Report saved to AGENT_SMITH_REPORT.md"`
+After saving:
 
-Then display the full report.
+1. **Update progress history** — Append a new entry to `.claude/agent-smith-history.json`:
+   ```json
+   {
+     "history": [
+       {
+         "date": "2026-03-23",
+         "agentSmithVersion": "2.3.0",
+         "score": 7.8,
+         "pillars": {
+           "security": 7,
+           "instructions": 8,
+           "configuration": 8,
+           "context": 6,
+           "extensions": 9,
+           "hooks": null,
+           "mcp": 7
+         },
+         "findings": {
+           "critical": 1,
+           "important": 3,
+           "suggestions": 2
+         }
+       }
+     ]
+   }
+   ```
+   - If the file already exists, read it and append the new entry to the `history` array
+   - If it doesn't exist, create it with the first entry
+   - Use `null` for N/A pillars
+   - Tell the user: `"📄 Report saved to AGENT_SMITH_REPORT.md"`
+   - Tell the user: `"📊 Score history updated in .claude/agent-smith-history.json"`
+
+2. Display the full report.
 
 ### Report Format
 
@@ -144,8 +177,13 @@ Then display the full report.
 
 **Project:** [name or path]
 **Type:** [detected project type(s)]
-**Score:** X.X/10
+**Score:** X.X/10 [trend indicator if history exists]
 **Date:** [date]
+
+### Trend indicator format (only if history exists):
+- Score improved: `7.8/10 (↑ from 6.4 — last analyzed 2026-03-15)`
+- Score dropped: `7.5/10 (↓ from 8.2 — last analyzed 2026-03-15)`
+- Score unchanged: `7.8/10 (— unchanged since 2026-03-15)`
 
 ---
 
@@ -299,6 +337,22 @@ Then display the full report.
 |---|--------|
 | C1 | [First advanced optimization] |
 | C2 | [Second advanced optimization] |
+
+---
+
+## Progress History
+
+[If history exists with 2+ entries, show a table of past analyses:]
+
+| Date | Score | Delta | Critical | Important | Suggestions |
+|------|:-----:|:-----:|:--------:|:---------:|:-----------:|
+| 2026-03-23 | 7.8 | ↑ +1.4 | 1 | 3 | 2 |
+| 2026-03-15 | 6.4 | — | 3 | 5 | 3 |
+
+[If this is the first analysis: "First analysis — run again after making changes to track progress."]
+
+[If score dropped, add a regression warning:]
+`⚠ Regression detected: Score dropped from X.X to X.X. Check findings above for new issues.`
 
 ---
 

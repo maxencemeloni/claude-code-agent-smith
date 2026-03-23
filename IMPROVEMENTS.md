@@ -2,6 +2,24 @@
 
 ---
 
+## v2.3.0 — Progress Tracking
+
+*Released: March 2026*
+
+### Changes
+
+- **Score history** — `/analyze-agent` now saves score data to `.claude/agent-smith-history.json` after each analysis, building a per-project history over time.
+
+- **Trend indicators** — Report header shows score direction compared to last analysis: `↑ from 6.4`, `↓ from 8.2`, or `— unchanged`.
+
+- **Regression detection** — Warning displayed when score drops between analyses.
+
+- **Progress History section** — New report section showing a table of past analyses with scores, deltas, and finding counts.
+
+- **Migration notice** — README now includes upgrade instructions for users coming from v1.x (install script) to v2.x (plugin system).
+
+---
+
 ## v2.2.0 — Examples Directory
 
 *Released: March 2026*
