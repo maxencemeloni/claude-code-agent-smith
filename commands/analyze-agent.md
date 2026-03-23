@@ -94,6 +94,34 @@ Any validation failure becomes a **Critical** or **Important** finding in the re
 
 2. Use detected type to inform `.claudeignore` recommendations
 
+### 1d. Configuration Wiring Integrity
+
+After discovery, build a **reference graph** across all `.claude/` configuration files and check for wiring issues. This catches broken dispatches, dead config, and stale references that individual file validation misses.
+
+**How to build the graph:**
+1. For every agent, command, skill, rule, and context file discovered in 1a, scan its content for references to other agents, commands, skills, or contexts (look for file names like `qa-orchestrator`, command names like `/commit`, skill references, agent dispatch tables, and `Active Agents` / `Active Skills` lists)
+2. Build two maps:
+   - **defines**: what each file defines (e.g., `.claude/agents/qa-orchestrator.md` defines agent `qa-orchestrator`)
+   - **references**: what each file references (e.g., a context file listing `qa-orchestrator` in its Active Agents)
+
+**Checks to run:**
+
+| # | Check | Severity | What to look for |
+|---|-------|----------|------------------|
+| W1 | **Cross-reference completeness** | Critical | Every agent name referenced in routing tables, dispatch lists, or context files exists as a file in `.claude/agents/`. Every command referenced (e.g., `/commit`, `/build-fix`) exists in `.claude/commands/` or `.claude/skills/` |
+| W2 | **Stale references** | Critical | Any context, rule, agent, or skill that references a non-existent agent, command, skill, or file path. Check both explicit paths and name-based references |
+| W3 | **Orphan detection** | Suggestion | Agents, commands, or skills that exist on disk but are never referenced by any context, rule, or other agent. These may be intentional standalone items — flag as suggestion, not error |
+| W4 | **Context conflict detection** | Important | If multiple contexts exist (e.g., `dev`, `testing`, `qa`), check for contradictory agent/skill lists — e.g., two contexts activating agents with overlapping responsibilities, or a context disabling something another context requires |
+| W5 | **Bidirectional consistency** | Suggestion | If agent A references agent B in a routing table, and a context activates A but not B, flag that B may not be discoverable when the context is active |
+
+**Output:** Each wiring issue becomes a finding with:
+- The source file (where the reference is)
+- The target (what's referenced)
+- Whether the target exists or not
+- Severity level per the table above
+
+If no `.claude/agents/`, `.claude/contexts/`, or `.claude/skills/` directories exist, skip this phase — wiring checks only apply to configurations with extensions.
+
 ---
 
 ## Phase 2: Pillar Evaluation
@@ -252,6 +280,26 @@ After saving:
 | [name] | [cmd] | [access scope] |
 
 [If no MCP: "No MCP servers configured (not required)"]
+
+---
+
+## Wiring Status
+
+[If extensions (agents, skills, contexts) exist:]
+
+| Check | Status | Details |
+|-------|:------:|---------|
+| Cross-references valid | ✓/✗ | [X references checked, Y broken] |
+| No stale references | ✓/✗ | [list any stale refs] |
+| No orphaned extensions | ✓/⚠ | [list any orphans] |
+| No context conflicts | ✓/⚠/N/A | [list any conflicts] |
+| Bidirectional consistency | ✓/⚠/N/A | [list any gaps] |
+
+[If issues found, list each:]
+- **[W1] Broken reference:** `contexts/qa.md` references agent `qa-orchestrator` → not found in `.claude/agents/`
+- **[W3] Orphan:** `agents/old-worker.md` is not referenced by any context or rule
+
+[If no extensions: "No agents, skills, or contexts configured — wiring checks not applicable."]
 
 ---
 

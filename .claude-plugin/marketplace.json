@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "agent-smith",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "description": "Analyze, validate, and optimize Claude Code configurations with a 7-pillar evaluation system",
       "category": "development",
       "source": "./",

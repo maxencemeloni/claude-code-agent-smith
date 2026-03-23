@@ -170,6 +170,12 @@ Seven pillars, weighted by impact on real-world usage.
   - Clear "When to Activate" section
   - Concrete examples (ideally GOOD/BAD patterns)
   - No external URLs without security guardrails
+- **Configuration Wiring** (cross-file integrity):
+  - Every agent referenced in routing tables, contexts, or rules exists in `.claude/agents/`
+  - Every command referenced by agents exists in `.claude/commands/` or `.claude/skills/`
+  - No stale references to non-existent agents, commands, skills, or files
+  - No orphaned extensions (agents/commands/skills on disk but never referenced)
+  - No conflicting context definitions (overlapping or contradictory agent/skill lists)
 
 **Scoring:**
 

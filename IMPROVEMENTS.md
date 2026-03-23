@@ -2,6 +2,27 @@
 
 ---
 
+## v2.4.0 — Configuration Wiring Integrity
+
+*Released: March 2026*
+
+### Changes
+
+- **Configuration wiring checks (Phase 1d)** — `/analyze-agent` now builds a reference graph across all `.claude/` configuration files and checks for cross-file integrity issues. Five new checks detect broken dispatches, dead config, and stale references that individual file validation misses:
+  - **W1 — Cross-reference completeness** (Critical): Every agent referenced in routing tables, contexts, or rules must exist in `.claude/agents/`. Every command referenced by agents must exist in `.claude/commands/` or `.claude/skills/`.
+  - **W2 — Stale references** (Critical): Flags any context, rule, agent, or skill that references a non-existent file.
+  - **W3 — Orphan detection** (Suggestion): Identifies agents, commands, or skills on disk that are never referenced by any context, rule, or agent.
+  - **W4 — Context conflict detection** (Important): Flags contradictory agent/skill lists across multiple contexts.
+  - **W5 — Bidirectional consistency** (Suggestion): Flags when an agent dispatches to another agent that isn't activated by the same context.
+
+- **Wiring Status report section** — New report section showing a summary table of wiring check results with per-issue details. Skipped automatically when no agents, skills, or contexts are configured.
+
+- **AGENT_SMITH.md updated** — Added configuration wiring checks to the Command & Extension Design pillar definition.
+
+- **Wiki Roadmap updated** — Added Configuration Wiring Integrity to the near-term planned features section.
+
+---
+
 ## v2.3.0 — Progress Tracking
 
 *Released: March 2026*
