@@ -50,7 +50,7 @@ claude
 /analyze-agent
 ```
 
-> **Update:** `claude plugin update agent-smith`
+> **Update:** `claude plugin update agent-smith@agent-smith-marketplace`
 
 ---
 
@@ -209,10 +209,10 @@ Works on all platforms.
 
 ```bash
 # Update
-claude plugin update agent-smith
+claude plugin update agent-smith@agent-smith-marketplace
 
 # Uninstall
-claude plugin uninstall agent-smith
+claude plugin uninstall agent-smith@agent-smith-marketplace
 ```
 
 ---

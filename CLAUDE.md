@@ -133,9 +133,20 @@ All reports should include:
 
 | File | What to Update |
 |------|----------------|
+| `VERSION` | Replace contents with new version |
+| `.claude-plugin/plugin.json` | Update `"version"` field |
+| `.claude-plugin/marketplace.json` | Update `"version"` in plugins array |
 | `README.md` | Version badge |
 | `IMPROVEMENTS.md` | Add new version section at top |
 | `wiki/Roadmap.md` | Current Status + Version History |
+
+### Post-Release Verification
+
+After pushing, always verify the plugin update works:
+```bash
+claude plugin update agent-smith@agent-smith-marketplace
+```
+The version should match the just-released version. If not, check that both `plugin.json` and `marketplace.json` have the correct version.
 
 ---
 
@@ -144,6 +155,7 @@ All reports should include:
 ```
 claude-code-agent-smith/
 ├── .claude-plugin/
+│   ├── marketplace.json    # Marketplace manifest (version + metadata)
 │   └── plugin.json         # Plugin manifest
 ├── .claude/
 │   └── commands/           # Dev-time slash commands (local development)
