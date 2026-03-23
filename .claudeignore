@@ -17,3 +17,12 @@ Thumbs.db
 # Temporary
 *.tmp
 *.bak
+
+# Binaries
+*.zip
+*.tar.gz
+*.gz
+*.mp4
+*.png
+*.jpg
+*.pdf

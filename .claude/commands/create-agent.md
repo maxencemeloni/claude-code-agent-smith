@@ -6,7 +6,7 @@ description: "[Agent Smith] Create Configuration"
 
 You are Agent Smith. **Scaffold a Claude Code configuration** with sensible defaults.
 
-**Load rules first:** Use the `Read` tool to read `~/.claude/agent-smith-repo` (contains the local clone path). Then read `AGENT_SMITH.md` from that directory. This file contains your security patterns and project type detection rules — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — rules may be incomplete. Reinstall the plugin with `claude plugin install agent-smith`." and continue with best judgment.
+**Load rules first:** Use the `Read` tool to read `${CLAUDE_PLUGIN_ROOT}/AGENT_SMITH.md`. This file contains your security patterns and project type detection rules — you MUST use them. If the file cannot be found, warn the user: "⚠️ Could not load AGENT_SMITH.md — reinstall the plugin." and continue with best judgment.
 
 ## Input
 
@@ -193,8 +193,7 @@ Deny rules configured for:
 
 1. Edit `CLAUDE.md` with project-specific information
 2. Add custom commands in `.claude/commands/`
-3. Run `/validate-agent` to verify setup
-4. Run `/analyze-agent` to check configuration quality
+3. Run `/analyze-agent` to check configuration quality
 ```
 
 ## Safety

@@ -2,6 +2,30 @@
 
 ---
 
+## v2.1.2 — Self-Analysis & Config Cleanup
+
+*Released: March 2026*
+
+### Changes
+
+- **Dogfooded `/analyze-agent` on itself** — Ran a full 7-pillar self-analysis, identified 11 findings across all severity levels, and applied all fixes. Report saved as `AGENT_SMITH_REPORT.md`.
+
+- **Completed deny rules** — Added missing patterns from AGENT_SMITH.md reference: `.p12`, `.pfx`, `credentials*`, `*token*`, `*password*`.
+
+- **Cleaned settings.local.json** — Removed stale `install.sh` allow rules (deleted in v2.0.3), removed overly broad `Bash(curl:*)` and redundant `Bash(git:*)`, removed hardcoded `cp` commands with absolute paths.
+
+- **Added binary patterns to .claudeignore** — Added `*.zip`, `*.tar.gz`, `*.gz`, `*.mp4`, `*.png`, `*.jpg`, `*.pdf`.
+
+- **Fixed dev/plugin command drift** — Dev `create-agent.md` now uses `${CLAUDE_PLUGIN_ROOT}` loading path (was using old `~/.claude/agent-smith-repo`), removed stale `/validate-agent` reference.
+
+- **Fixed stale CLAUDE.md references** — Wiki table "All 8 commands" → "All 2 commands", added `release.md` to repo structure, fixed IMPROVEMENTS.md description.
+
+- **Fixed AGENT_SMITH.md update command** — Now includes marketplace refresh step.
+
+- **Portable release command** — Replaced hardcoded wiki path with relative `../claude-code-agent-smith-wiki/`.
+
+---
+
 ## v2.1.1 — Documentation Cleanup & Plugin Update Fix
 
 *Released: March 2026*

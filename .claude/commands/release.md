@@ -56,7 +56,7 @@ Use `git log` to see commits since the last release tag to help draft the change
 
 ## Step 3 — Update Wiki
 
-The wiki repo is at `/Users/mam/WebstormProjects/claude-code-agent-smith-wiki/`.
+The wiki repo is at `../claude-code-agent-smith-wiki/`.
 
 ### Roadmap.md
 
@@ -82,7 +82,7 @@ git push
 ### Wiki repo
 
 ```
-cd /Users/mam/WebstormProjects/claude-code-agent-smith-wiki/
+cd ../claude-code-agent-smith-wiki/
 git add Roadmap.md
 git commit -m "Update for v{VERSION} — {DESCRIPTION}"
 git push

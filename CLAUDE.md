@@ -161,7 +161,8 @@ claude-code-agent-smith/
 ├── .claude/
 │   └── commands/           # Dev-time slash commands (local development)
 │       ├── analyze-agent.md
-│       └── create-agent.md
+│       ├── create-agent.md
+│       └── release.md
 ├── commands/               # Plugin commands (distributed to users)
 │   ├── analyze-agent.md
 │   └── create-agent.md
@@ -169,7 +170,7 @@ claude-code-agent-smith/
 ├── tmp/                    # Test reports (not committed)
 ├── AGENT_SMITH.md          # Core identity document (loaded by commands)
 ├── CLAUDE.md               # This file (development context)
-├── IMPROVEMENTS.md         # Changelog and roadmap
+├── IMPROVEMENTS.md         # Changelog
 ├── README.md               # User-facing documentation
 └── VERSION                 # Current version
 ```
@@ -184,7 +185,7 @@ The GitHub wiki is a separate repository located at `/Users/mam/WebstormProjects
 | Page | Purpose |
 |------|---------|
 | Home.md | Overview and quick start |
-| Commands.md | All 8 commands documented |
+| Commands.md | All 2 commands documented |
 | Evaluation-Pillars.md | The 7-pillar system explained |
 | Analysis-Scope.md | What we measure vs. don't measure |
 | Installation.md | Setup instructions |
