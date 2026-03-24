@@ -2,6 +2,29 @@
 
 ---
 
+## v2.4.1 — Auto-Memory Conflict Detection
+
+*Released: March 2026*
+
+### Changes
+
+- **Auto-memory discovery & conflict detection** — `/analyze-agent` now discovers Claude Code auto-memory files (`~/.claude/projects/<path>/memory/`) and cross-checks them against project configuration. Detects:
+  - Feedback memories contradicting CLAUDE.md instructions or `.claude/rules/`
+  - Project memories with outdated references to removed commands, agents, or workflows
+  - Memory files referencing non-existent files or commands
+  - User memories with assumptions that don't match the current project setup
+  - All memory findings are **suggestions only** (never critical) since memory is personal/local
+
+- **Memory Status report section** — New section in the analysis report showing memory directory status, file count, and any detected conflicts or stale references.
+
+- **AGENT_SMITH.md scope updated** — Auto-memory added to the "What You Analyze" table and Instruction Clarity pillar. Removed "Memory systems" from the "cannot analyze" list.
+
+- **CLAUDE.md development task added** — New "Modifying the Report Format" task requiring example reports to be updated alongside template changes.
+
+- **Example report updated** — Self-analysis example now includes the Memory Status section.
+
+---
+
 ## v2.4.0 — Configuration Wiring Integrity
 
 *Released: March 2026*
