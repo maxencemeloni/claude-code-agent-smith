@@ -214,6 +214,12 @@ The GitHub wiki is a separate repository located at `/Users/mam/WebstormProjects
 3. Update wiki `Evaluation-Pillars.md`
 4. Bump minor version
 
+### Modifying the Report Format
+
+1. Update report template in both `.claude/commands/analyze-agent.md` (dev) and `commands/analyze-agent.md` (plugin)
+2. Update example reports in `examples/reports/` to reflect the new format
+3. Bump minor version
+
 ### Renaming/Removing a Command
 
 1. Remove/rename in both `.claude/commands/` and `commands/`

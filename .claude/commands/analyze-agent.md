@@ -50,6 +50,7 @@ If version check fails at any step (network error, missing files, parse error), 
 5. Read instruction files at root (`CLAUDE.md`, etc.)
 6. Check for `~/.claude/rules/` (user-level rules, if accessible)
 7. Read `.claude/agent-smith-history.json` if it exists (for progress tracking)
+8. **Discover auto-memory files:** Derive the memory directory path from the project path (`~/.claude/projects/<path-with-slashes-replaced-by-dashes>/memory/`). If it exists, read `MEMORY.md` (the index) and all referenced memory files (`.md` files in that directory)
 
 ### 1b. Validation (absorbed from /validate-agent)
 
@@ -81,7 +82,15 @@ Run these validation checks and flag failures as findings:
 - References to files in instructions/commands actually exist
 - No hardcoded personal paths (`/Users/`, `/home/`)
 
-Any validation failure becomes a **Critical** or **Important** finding in the report.
+**Memory conflict checks (if memory files were discovered in 1a step 8):**
+- Feedback memories that contradict CLAUDE.md instructions or `.claude/rules/` (e.g., memory says "never mock DB" but a rule says "use mocks for tests")
+- Project memories with outdated information that conflicts with current configuration (e.g., memory references a removed command or deprecated workflow)
+- Memory files referencing agents, commands, skills, or file paths that no longer exist
+- User memories with assumptions that don't match the project setup (e.g., memory says "Python project" but it's now Node.js)
+
+Note: Memory files are **personal** (user-level, not committed to the repo). Frame findings as: "Your local memory may conflict with..." — these are suggestions, never critical severity.
+
+Any validation failure becomes a **Critical** or **Important** finding in the report (except memory conflicts, which are always **Suggestions**).
 
 ### 1c. Project Detection
 
@@ -302,6 +311,27 @@ After saving:
 - **[W3] Orphan:** `agents/old-worker.md` is not referenced by any context or rule
 
 [If no extensions: "No agents, skills, or contexts configured — wiring checks not applicable."]
+
+---
+
+## Memory Status
+
+[If memory files were discovered:]
+
+| Check | Status | Details |
+|-------|:------:|---------|
+| Memory directory found | ✓/✗ | [path] |
+| Memory files count | — | [X files indexed in MEMORY.md] |
+| Conflicts with config | ✓/⚠ | [X potential conflicts found] |
+| Stale references | ✓/⚠ | [X memories reference non-existent files/commands] |
+
+[If conflicts found, list each:]
+- **Conflict:** Memory `feedback_testing.md` says "never mock the database" — but `.claude/rules/testing.md` recommends mock-based tests
+- **Stale:** Memory `project_api_migration.md` references command `/migrate-api` — command no longer exists
+
+[If no memory directory: "No auto-memory found for this project."]
+
+> **Note:** Memory files are personal (not committed to the repo). These findings are suggestions to help you keep your local memory aligned with the project configuration.
 
 ---
 

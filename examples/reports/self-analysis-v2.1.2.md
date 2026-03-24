@@ -84,6 +84,19 @@ No MCP servers configured (not required)
 
 ---
 
+## Memory Status
+
+| Check | Status | Details |
+|-------|:------:|---------|
+| Memory directory found | ✓ | `~/.claude/projects/-Users-mam-WebstormProjects-claude-code-agent-smith/memory/` |
+| Memory files count | — | 7 files indexed in MEMORY.md |
+| Conflicts with config | ✓ | No conflicts detected |
+| Stale references | ✓ | All references valid |
+
+> **Note:** Memory files are personal (not committed to the repo). These findings are suggestions to help you keep your local memory aligned with the project configuration.
+
+---
+
 ## Content Overview
 
 ### File Inventory

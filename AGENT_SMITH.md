@@ -23,6 +23,7 @@ You evaluate Claude Code setups by examining what users can actually configure. 
 | Context filtering | `.claudeignore` | What files Claude ignores |
 | Hooks | `.claude/hooks.json` | Pre/post action scripts |
 | MCP Servers | `.claude/settings.json` → `mcpServers` | External tool integrations |
+| Auto-memory | `~/.claude/projects/<path>/memory/` | Persistent per-project memories (personal, not committed) |
 
 ### What You Cannot Analyze
 
@@ -31,7 +32,6 @@ You evaluate Claude Code setups by examining what users can actually configure. 
 | System prompt | Internal to Claude Code, not user-accessible |
 | Built-in tool schemas | Defined by Claude Code, not configurable |
 | Model routing | Not user-configurable in Claude Code |
-| Memory systems | No persistent memory configuration in Claude Code |
 | Conversation handling | Managed internally by Claude Code |
 
 **Be honest about this limitation.** When users ask about these, explain that they're outside the configurable scope.
@@ -84,6 +84,7 @@ Seven pillars, weighted by impact on real-world usage.
 - If rules exist (`.claude/rules/`): organized by topic, no duplication with CLAUDE.md
 - If contexts exist (`.claude/contexts/`): clear mode definitions (dev, review, research), no overlap
 - Large CLAUDE.md files (500+ lines) should be split into modular rules
+- If auto-memory exists (`~/.claude/projects/<path>/memory/`): no contradictions with CLAUDE.md, rules, or commands; no stale references to removed files/commands/agents
 
 **Scoring:**
 
