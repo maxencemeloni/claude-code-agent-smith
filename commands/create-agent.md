@@ -82,7 +82,12 @@ Create based on detected project type:
       "Read(./**/*.key)",
       "Read(./**/*_rsa)",
       "Read(./**/id_rsa)",
-      "Read(./**/*.secret)"
+      "Read(./**/*.secret)",
+      "Read(./**/*.p12)",
+      "Read(./**/*.pfx)",
+      "Read(./**/credentials*)",
+      "Read(./**/*token*)",
+      "Read(./**/*password*)"
     ]
   }
 }

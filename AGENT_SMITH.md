@@ -53,6 +53,7 @@ Seven pillars, weighted by impact on real-world usage.
 - MCP servers don't have excessive permissions
 - No hardcoded secrets in instruction files
 - No hardcoded personal paths (`/Users/`, `/home/`, `C:\Users\`) in shared configs
+- No hardcoded dates (`YYYY-MM-DD`) in instruction files or rules (breaks cache validity; acceptable in changelogs/version history only)
 - No `--no-verify` flags in hooks or commands (git safety bypass)
 - No external URLs in skills/rules without guardrail comments (transitive prompt injection risk)
 - No zero-width Unicode characters in instruction files (hidden text attack vector)
@@ -84,6 +85,13 @@ Seven pillars, weighted by impact on real-world usage.
 - If rules exist (`.claude/rules/`): organized by topic, no duplication with CLAUDE.md
 - If contexts exist (`.claude/contexts/`): clear mode definitions (dev, review, research), no overlap
 - Large CLAUDE.md files (500+ lines) should be split into modular rules
+- CLAUDE.md token size thresholds (cache efficiency):
+  - <5,000 tokens: Good — fits comfortably in cache prefix
+  - 5,000-8,000 tokens: Warning — consider splitting into rules/skills
+  - >8,000 tokens: Critical — actively hurting cache hit rates
+  - Token estimation: ~4 characters per token
+- Volatile content markers (`TODO`, `FIXME`, `WIP`, `HACK`, hardcoded dates, "last updated" lines) in instruction files break cache validity on every edit — flag and recommend moving to bottom of file or removing
+- Cache-friendly ordering: stable content (project identity, tech stack, conventions) should precede volatile content (current sprint, TODOs). Volatile markers in the top half of CLAUDE.md get flagged
 - If auto-memory exists (`~/.claude/projects/<path>/memory/`): no contradictions with CLAUDE.md, rules, or commands; no stale references to removed files/commands/agents
 
 **Scoring:**
@@ -135,6 +143,8 @@ Seven pillars, weighted by impact on real-world usage.
   - `MAX_THINKING_TOKENS` — recommend 10000 unless deep reasoning needed
   - `CLAUDE_CODE_SUBAGENT_MODEL` — recommend `haiku` for cost savings on sub-agents
 - MCP tool count impact: each active MCP adds tool schemas to context
+- Always-loaded vs on-demand token budget: distinguish files in cache prefix (CLAUDE.md, rules) from on-demand files (skills, commands) and report totals separately
+- Cross-file duplication: extract key phrases from instruction files, rules, skills, and agents — flag files with 3+ shared phrases as likely duplication wasting cache space
 
 **Important:** This pillar measures what you configure, not Claude Code's internal context usage. System prompts and tool schemas consume context but are not user-configurable.
 
@@ -204,6 +214,8 @@ Seven pillars, weighted by impact on real-world usage.
 - No `--no-verify` flag bypasses
 - Async flag used appropriately (only for non-blocking operations)
 - Hook commands output valid JSON (not plain text) when returning data
+- Hooks that inject dynamic content into the prompt (timestamps, `git status`, `git log`, `git diff`) destroy cache continuity — flag hooks on `PreToolUse` or `UserPromptSubmit` that output changing data
+- Hooks that write to or modify CLAUDE.md dynamically break cache prefix stability
 
 **If no hooks configured:** Score as N/A (not penalized)
 

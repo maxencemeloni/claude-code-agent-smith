@@ -10,7 +10,9 @@ You are Agent Smith. Perform a **comprehensive analysis** of a Claude Code proje
 
 ## Input
 
-$ARGUMENTS - Local path to analyze (defaults to current directory)
+$ARGUMENTS - Options:
+- A local path to analyze (defaults to current directory)
+- `--quick` — Score + Findings + Action Plan only. Skips Instruction Quality Detail, Extension Quality Detail, Content Overview file inventory, and interactive triage. Saves the report and stops.
 
 ## Overview
 
@@ -34,6 +36,8 @@ Agent Smith v[version]
 ```
 
 Updates are handled via the Claude Code plugin system (`claude plugin update agent-smith`).
+
+**Progress:** At the start of each phase, print a one-line status: `[Phase X/7] Phase name...` (e.g., `[Phase 1/7] Discovery & Validation...`). This keeps users informed during the analysis.
 
 If version check fails at any step (network error, missing files, parse error), silently continue with Phase 1.
 
@@ -139,12 +143,12 @@ If no `.claude/agents/`, `.claude/contexts/`, or `.claude/skills/` directories e
 
 Evaluate each pillar using criteria from the loaded AGENT_SMITH.md rules:
 
-1. **Security Posture (20%)** — Deny rules, dangerous patterns, secrets, hardcoded paths, external URL risks
-2. **Instruction Clarity (20%)** — CLAUDE.md quality, structure, contradictions, modular rules, contexts. **Include per-file quality breakdown** (clarity, structure, completeness, efficiency, usefulness scores for each instruction file — absorbed from /rate-instructions)
+1. **Security Posture (20%)** — Deny rules, dangerous patterns, secrets, hardcoded paths, hardcoded dates (`YYYY-MM-DD` in instruction/rule files — acceptable in changelogs only), external URL risks
+2. **Instruction Clarity (20%)** — CLAUDE.md quality, structure, contradictions, modular rules, contexts. **Include per-file quality breakdown** (clarity, structure, completeness, efficiency, usefulness scores for each instruction file — absorbed from /rate-instructions). **Cache efficiency checks:** CLAUDE.md token threshold (<5K good, 5-8K warning, >8K critical), volatile content markers (`TODO`, `FIXME`, `WIP`, `HACK`, hardcoded dates, "last updated" lines), cache-friendly ordering (stable content first, volatile content last — flag volatile markers in top half)
 3. **Configuration Quality (15%)** — Valid JSON, proper structure
-4. **Context Efficiency (15%)** — .claudeignore, references over copies, token optimization settings, MCP count impact. **Include token measurement** (file inventory with line counts, character counts, estimated tokens for each file — absorbed from /audit-context)
+4. **Context Efficiency (15%)** — .claudeignore, references over copies, token optimization settings, MCP count impact. **Include token measurement** (file inventory with line counts, character counts, estimated tokens for each file — absorbed from /audit-context). **Cache budget:** Distinguish always-loaded files (CLAUDE.md, rules — cache prefix impact) from on-demand files (skills, commands — no cache impact when unused). **Cross-file duplication:** Extract key phrases from instruction files, rules, skills, agents — flag files with 3+ shared phrases as likely duplication
 5. **Command & Extension Design (15%)** — Commands, agents, skills: naming, structure, scope, frontmatter. **Include per-extension ratings** (naming, input handling, structure, output, scope, efficiency scores — absorbed from /optimize-commands)
-6. **Hook Safety (10%)** — Valid events, safe commands, scripts exist, timeouts, async usage
+6. **Hook Safety (10%)** — Valid events, safe commands, scripts exist, timeouts, async usage. **Cache impact:** Flag hooks on `PreToolUse`/`UserPromptSubmit` that output dynamic content (timestamps, `git status`, `git diff`) — these destroy cache continuity. Flag hooks that modify CLAUDE.md dynamically
 7. **MCP Integration (5%)** — Valid commands, scoped permissions, count hygiene, no hardcoded keys
 
 ---
@@ -209,6 +213,8 @@ After saving:
 
 2. Display the full report.
 
+**If `--quick` was passed:** After saving the report, display only the Summary, Pillar Scores, Findings, and Action Plan sections. Skip Phases 5-7 entirely and end with: "Quick analysis complete. Run `/analyze-agent` without `--quick` for interactive triage."
+
 ### Report Format
 
 ```markdown
@@ -256,6 +262,33 @@ After saving:
 
 ### Suggestions (improvements, not problems)
 - [Optional enhancements]
+
+---
+
+## Action Plan
+
+### Option A: Quick Wins (Low Effort)
+
+| # | Action |
+|---|--------|
+| A1 | [First quick fix based on findings] |
+| A2 | [Second quick fix] |
+| A3 | [Third quick fix] |
+
+### Option B: Recommended (Medium Effort)
+
+| # | Action |
+|---|--------|
+| B1 | [First recommended change] |
+| B2 | [Second recommended change] |
+| B3 | [Third recommended change] |
+
+### Option C: Advanced (High Effort)
+
+| # | Action |
+|---|--------|
+| C1 | [First advanced optimization] |
+| C2 | [Second advanced optimization] |
 
 ---
 
@@ -333,6 +366,16 @@ After saving:
 
 > **Note:** Memory files are personal (not committed to the repo). These findings are suggestions to help you keep your local memory aligned with the project configuration.
 
+**Collapsing empty sections:** If ALL of the following are N/A or empty (Hooks Status, MCP Status, Wiring Status, Memory Status), replace all four sections with a single line:
+
+```
+## Optional Components
+
+No hooks, MCP servers, extensions, or auto-memory configured.
+```
+
+Only show individual sections when at least one has actual findings or configuration to display.
+
 ---
 
 ## Content Overview
@@ -358,6 +401,44 @@ After saving:
 
 [If optimization opportunities found:]
 **Potential savings:** ~X tokens (X%) through [brief description]
+
+---
+
+## Cache Efficiency
+
+### Token Budget
+
+| File | Est. Tokens | Loaded | Cache Impact |
+|------|------------:|--------|--------------|
+| [each always-loaded file] | ~X | Always | High — in prefix every turn |
+| [each on-demand file] | ~X | On-demand | Low — only when invoked |
+
+**Always-loaded total:** ~X tokens (cache prefix impact)
+**On-demand total:** ~X tokens (no cache impact when unused)
+
+### Volatile Content
+
+| File | Volatile Markers | Position | Verdict |
+|------|:----------------:|----------|---------|
+| [each instruction/rule file] | X | [Top/Bottom half] | [Clean / Move to bottom] |
+
+Volatile markers: `TODO`, `FIXME`, `WIP`, `HACK`, hardcoded dates (`YYYY-MM-DD`), "last updated" lines
+
+### CLAUDE.md Size
+
+| Metric | Value | Verdict |
+|--------|------:|---------|
+| Estimated tokens | ~X | [Good (<5K) / Warning (5-8K) / Critical (>8K)] |
+
+[If >5K tokens: recommend splitting stable reference content into `.claude/rules/` or `.claude/skills/`]
+
+### Duplication Analysis
+
+| Source | Target | Shared Phrases | Verdict |
+|--------|--------|:--------------:|---------|
+| [file A] | [file B] | X | [Clean / Likely duplication] |
+
+[If no duplication found: "No significant cross-file duplication detected."]
 
 ---
 
@@ -390,33 +471,6 @@ After saving:
 | Skill | Structure | Security | Scope | Overall |
 |-------|:---------:|:--------:|:-----:|:-------:|
 | [each skill] | ✓/⚠ | ✓/⚠ | ✓/⚠ | X/10 |
-
----
-
-## Action Plan
-
-### Option A: Quick Wins (Low Effort)
-
-| # | Action |
-|---|--------|
-| A1 | [First quick fix based on findings] |
-| A2 | [Second quick fix] |
-| A3 | [Third quick fix] |
-
-### Option B: Recommended (Medium Effort)
-
-| # | Action |
-|---|--------|
-| B1 | [First recommended change] |
-| B2 | [Second recommended change] |
-| B3 | [Third recommended change] |
-
-### Option C: Advanced (High Effort)
-
-| # | Action |
-|---|--------|
-| C1 | [First advanced optimization] |
-| C2 | [Second advanced optimization] |
 
 ---
 
@@ -505,6 +559,10 @@ For each item in the selected category (or all categories if D), present one at 
     {
       "label": "Other",
       "description": "Type a custom instruction for this item"
+    },
+    {
+      "label": "Yes to all",
+      "description": "Apply all remaining items in this category"
     }
   ]
 }
@@ -514,6 +572,7 @@ For each item in the selected category (or all categories if D), present one at 
 - **Yes** → Mark as "Apply"
 - **No** → Mark as "Skip"
 - **Other** → Follow up by asking the user to type their custom instruction, then mark as "Apply (custom: [user's instruction])"
+- **Yes to all** → Mark all remaining items in the current category as "Apply" and skip to Phase 7
 
 Collect all decisions before proceeding.
 

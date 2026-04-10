@@ -2,6 +2,50 @@
 
 ---
 
+## v2.5.0 — Cache Efficiency (TEP Integration)
+
+*Released: April 2026*
+
+Inspired by [TEP (Token Economy Paradigm)](https://github.com/marcantoinedutoit/tep) by Marc-Antoine Dutoit, this release integrates prompt caching awareness into Agent Smith's analysis. See `docs/TEP-INTEGRATION.md` for the full design document.
+
+### Changes
+
+- **Volatile content detection** — `/analyze-agent` now flags `TODO`, `FIXME`, `WIP`, `HACK` markers and hardcoded dates (`YYYY-MM-DD`) in instruction files, rules, and skills. These break cache validity on every edit. *(Instruction Clarity + Context Efficiency)*
+
+- **CLAUDE.md token threshold** — Concrete size guidance: <5,000 tokens (good), 5,000-8,000 (warning — split into rules/skills), >8,000 (critical — actively hurting cache hit rates). *(Instruction Clarity)*
+
+- **Cache-friendly ordering check** — Flags volatile markers (TODOs, dates) in the top half of CLAUDE.md where they disrupt the stable cache prefix. *(Instruction Clarity)*
+
+- **Hardcoded date detection** — Extends existing hardcoded path detection to flag `YYYY-MM-DD` patterns in shared config files (acceptable in changelogs only). *(Security Posture)*
+
+- **Hook cache impact** — Detects hooks that inject dynamic content (timestamps, `git status`, `git diff`) into the system prompt, silently destroying cache continuity. *(Hook Safety)*
+
+- **Cache Efficiency report section** — New report section with:
+  - Token budget distinguishing always-loaded files (cache prefix) vs on-demand files (skills/commands)
+  - Volatile content audit per file with position and verdict
+  - CLAUDE.md size assessment against cache thresholds
+  - Cross-file duplication analysis across instruction files, rules, skills, and agents
+
+- **`--quick` mode** — `/analyze-agent --quick` produces Score + Findings + Action Plan without interactive triage. Saves the report and stops.
+
+- **Batch accept** — "Yes to all" option in Phase 6 triage to apply all remaining items in a category.
+
+- **Progress indicators** — Each phase now prints `[Phase X/7]` status for user visibility.
+
+- **Collapsed empty sections** — Hooks, MCP, Wiring, and Memory sections collapse into a single "No optional components configured" line when all are N/A.
+
+- **Action Plan moved up** — Now appears right after Findings for faster access to actionable items.
+
+- **UX improvements across the board** — `.gitignore` added, CLAUDE.md trimmed and restructured, create-agent deny rules completed, repo structure updated.
+
+### Planned: Level 3 — Session Analysis (Future)
+
+- **Session data parsing** — Parse Claude Code session JSONL from `~/.claude/projects/<path>/` to extract real-world cache hit rate, estimated cost, top files accessed, and tool call frequency.
+
+- **Session Analysis report section** — Display-only metrics (never saved to report for privacy). Requires user consent before reading session files.
+
+---
+
 ## v2.4.1 — Auto-Memory Conflict Detection
 
 *Released: March 2026*

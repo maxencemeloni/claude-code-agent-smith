@@ -86,30 +86,15 @@ These are NOT measurable by Agent Smith and we must never claim otherwise:
 | `/analyze-agent` | Full 7-pillar analysis, interactive triage, and guided fixes |
 | `/create-agent` | Scaffold new configuration |
 
-### `/analyze-agent` Workflow
-
-1. **Phase 0** — Version check
-2. **Phase 1** — Discovery & validation (absorbs `/validate-agent`)
-3. **Phase 2** — 7-pillar evaluation (absorbs `/audit-context`, `/rate-instructions`, `/optimize-commands`)
-4. **Phase 3** — Scoring
-5. **Phase 4** — Generate & save report to `AGENT_SMITH_REPORT.md`
-6. **Phase 5** — Interactive triage: user picks category (Quick Wins / Recommended / Advanced)
-7. **Phase 6** — Item-by-item decisions: Yes / No / Custom instruction
-8. **Phase 7** — Execution plan: review, confirm, apply (absorbs `/fix-agent`)
+For workflow details, see the command files themselves in `commands/`.
 
 ---
 
 ## Report Structure
 
-All reports should include:
+Reports follow a structured format defined in `commands/analyze-agent.md` Phase 4. Key sections: Header, Summary, Pillar Scores, Findings, Action Plan, Diagnostic Details, Limitations, and Footer.
 
-1. **Header** — Project name, type, score, date
-2. **Summary** — 2-3 sentences of key findings
-3. **Pillar Scores** — Table with scores and notes
-4. **Findings** — Categorized by severity (Critical, Important, Suggestions)
-5. **Action Plan** — Checkboxes organized by effort level (Quick Wins, Recommended, Advanced)
-6. **Limitations** — Honest disclaimer about scope
-7. **Footer** — Links to GitHub repo and AI tools hub
+For the full template, see the command file.
 
 ---
 
@@ -166,11 +151,12 @@ claude-code-agent-smith/
 ├── commands/               # Plugin commands (distributed to users)
 │   ├── analyze-agent.md
 │   └── create-agent.md
+├── docs/
+│   └── TEP-INTEGRATION.md # Cache efficiency integration plan
 ├── examples/
 │   ├── reports/            # Sample analysis reports (self-analysis)
 │   └── configs/            # Starter configs (nodejs, python, generic)
 ├── assets/                 # Banner and logo images
-├── tmp/                    # Test reports (not committed)
 ├── AGENT_SMITH.md          # Core identity document (loaded by commands)
 ├── CLAUDE.md               # This file (development context)
 ├── IMPROVEMENTS.md         # Changelog

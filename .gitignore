@@ -1,17 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Local settings (keep settings.json, ignore local overrides)
-.claude/settings.local.json
-
 # Logs
 *.log
 
+# Temporary
 tmp/
+
+# Agent Smith generated files (per-project, not committed)
+AGENT_SMITH_REPORT.md
+.claude/agent-smith-history.json
