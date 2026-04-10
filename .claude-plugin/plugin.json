@@ -14,7 +14,11 @@
     "analysis",
     "validation",
     "security",
-    "optimization"
+    "optimization",
+    "linting",
+    "best-practices",
+    "audit",
+    "claudemd"
   ],
   "commands": ["./commands/"]
 }
