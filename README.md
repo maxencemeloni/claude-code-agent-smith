@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Claude_Code-Slash_Commands-blueviolet?style=for-the-badge" alt="Claude Code"/>
-  <img src="https://img.shields.io/badge/v2.5.0-Stable-green?style=for-the-badge" alt="Version"/>
+  <img src="https://img.shields.io/badge/v2.5.1-Stable-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/MIT-License-blue?style=for-the-badge" alt="License"/>
 </p>
 
@@ -134,7 +134,7 @@ After choosing, you walk through each item one by one and decide what to do. The
 | **Security Posture** | 20% | Sensitive file protection, dangerous patterns |
 | **Instruction Clarity** | 20% | CLAUDE.md quality, structure, contradictions |
 | **Configuration Quality** | 15% | settings.json structure, allow rules |
-| **Context Efficiency** | 15% | .claudeignore coverage, embedded vs referenced content |
+| **Context Efficiency** | 15% | .claudeignore coverage, duplication, references |
 | **Command & Extension Design** | 15% | Commands, agents, skills: quality, naming, structure |
 | **Hook Safety** | 10% | hooks.json validity, dangerous commands |
 | **MCP Integration** | 5% | MCP server configuration quality |

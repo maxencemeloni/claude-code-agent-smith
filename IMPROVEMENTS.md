@@ -2,6 +2,22 @@
 
 ---
 
+## v2.5.1 — Documentation & Example Consistency
+
+*Released: April 2026*
+
+### Changes
+
+- **Regenerated example report** — Replaced `examples/reports/self-analysis-v2.1.2.md` with `self-analysis-v2.5.0.md` matching the current v2.5.0 report template. Includes all sections added since v2.1.2: Wiring Status, Cache Efficiency (Token Budget, Volatile Content, CLAUDE.md Size, Duplication Analysis), Progress History, and collapsed Optional Components.
+
+- **Aligned pillar descriptions** — Context Efficiency one-liner in README.md now matches CLAUDE.md and AGENT_SMITH.md: "duplication, references" instead of "embedded vs referenced content".
+
+- **Documented dev/plugin command parity** — Added a new section in CLAUDE.md explaining why `analyze-agent.md` intentionally diverges between `commands/` (plugin) and `.claude/commands/` (dev): rule loading paths, version loading, and error handling differ because the dev commands run outside the plugin runtime.
+
+- **Fixed stale example reference** — IMPROVEMENTS.md v2.2.0 entry now references the updated example filename.
+
+---
+
 ## v2.5.0 — Cache Efficiency (TEP Integration)
 
 *Released: April 2026*
@@ -115,7 +131,7 @@ Inspired by [TEP (Token Economy Paradigm)](https://github.com/marcantoinedutoit/
 ### Changes
 
 - **Examples directory** — Added `examples/` with sample reports and starter configurations for new users:
-  - `examples/reports/self-analysis-v2.1.2.md` — Real self-analysis report from dogfooding
+  - `examples/reports/self-analysis-v2.5.0.md` — Real self-analysis report (updated at each major version)
   - `examples/configs/nodejs/` — Node.js starter (settings.json, .claudeignore, CLAUDE.md)
   - `examples/configs/python/` — Python starter with pytest/ruff/mypy allows
   - `examples/configs/generic/` — Minimal starter for any project type

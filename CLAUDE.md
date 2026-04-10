@@ -88,6 +88,16 @@ These are NOT measurable by Agent Smith and we must never claim otherwise:
 
 For workflow details, see the command files themselves in `commands/`.
 
+### Dev vs Plugin Command Parity
+
+The `commands/` (plugin) and `.claude/commands/` (dev) directories contain the same commands, but `analyze-agent.md` intentionally diverges in a few places:
+
+- **Rule loading:** Plugin uses `${CLAUDE_PLUGIN_ROOT}/AGENT_SMITH.md`; dev uses `~/.claude/agent-smith-repo` path lookup (pre-plugin mechanism, needed for local dev outside the plugin context).
+- **Version loading:** Plugin uses `${CLAUDE_PLUGIN_ROOT}/VERSION`; dev reads from the repo directory.
+- **Error handling:** Dev version has an extra fallback line for version check failures.
+
+These differences exist because the dev commands run outside the plugin runtime and cannot rely on `${CLAUDE_PLUGIN_ROOT}`. The `create-agent.md` files are identical.
+
 ---
 
 ## Report Structure
