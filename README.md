@@ -274,8 +274,20 @@ MIT
 
 ---
 
+## More Claude Code Plugins
+
+Tools built by the same developer to enhance your Claude Code experience.
+
+| Plugin | Description | Command |
+|--------|-------------|---------|
+| **[Prompt Smith](https://github.com/maxencemeloni/claude-code-prompt-smith)** | Optimizes rough prompts into cleaner, more executable versions. Four modes: default, agentic, compact, and strict. | `/prompt` |
+
+> Check out [Prompt Smith](https://prompt-smith.mmapi.fr/) for more details
+
+---
+
 <p align="center">
   <a href="https://github.com/maxencemeloni/claude-code-agent-smith">GitHub</a> ·
   <a href="https://github.com/maxencemeloni/claude-code-agent-smith/wiki">Wiki</a> ·
-  <a href="https://hub.mmapi.fr/tools?origin=claudecode">More AI Tools</a>
+  <a href="https://agent-smith.mmapi.fr/">Website</a>
 </p>

@@ -240,4 +240,4 @@ Before releasing:
 
 - **Repository:** https://github.com/maxencemeloni/claude-code-agent-smith
 - **Wiki:** https://github.com/maxencemeloni/claude-code-agent-smith/wiki
-- **AI Tools Hub:** https://hub.mmapi.fr/tools?origin=claudecode
+- **Website:** https://agent-smith.mmapi.fr/
